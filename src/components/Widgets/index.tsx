@@ -11,7 +11,7 @@ export const Widgets: React.FC = () => {
         method: 'GET',
         headers: {
           Authorization:
-            'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjg1MzA4NTM1fQ.UMMu8LwGNgDTp4cTXg7w1viQ-eWezV5QkiR4x_2w91b-z0aCR5yi1cJRrCmWuY4Cie1BUKE2G7ILYfcqLbAJ4w',
+            'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQZWRyb1BvdGVuemEiLCJleHAiOjE2ODUzNzQwMDB9.405qS0DunwtEcX7fneQ2MZn8GNngtexDSNg-AeuJuwgeGwGXOMUQWVELj8Oa9byX7XC4I--BuPFIYVRnbUwrCg',
         },
       });
 
