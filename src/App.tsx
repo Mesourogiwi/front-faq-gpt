@@ -23,6 +23,7 @@ const router = createBrowserRouter([
     path: '/sources',
     element: <Sources />,
   },
+  {
     path: '/sessions/:id',
     element: <SessionById />,
   }
