@@ -32,7 +32,7 @@ export const Sources: React.FC = () => {
         <div key={source?.id}>
           <h4>source {source?.id}</h4>
           <ul>
-            <li>Nome: {source?.name}</li>
+            <li>Name: {source?.channel}</li>
             <li>Sources Messages</li>
             {source?.sourceMessages?.map((sourceMessage: any) => (
               <div key={sourceMessage?.id}>
