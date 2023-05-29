@@ -5,6 +5,8 @@ import { Widgets } from './components/Widgets';
 import { Sources } from './components/Sources';
 import { Sessions } from './components/Sessions';
 import { SessionById } from './components/SessionById';
+import { SourceMessages } from './components/SourceMessages';
+import { SessionMessages } from './components/SessionMessages';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
   {
     path: '/sessions/:id',
     element: <SessionById />,
+  },
+  {
+    path: '/sourceMessages',
+    element: <SourceMessages />,
+  },
+  {
+    path: '/sessionMessages',
+    element: <SessionMessages />,
   }
 ]);
 
