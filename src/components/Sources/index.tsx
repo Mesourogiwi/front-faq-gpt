@@ -11,7 +11,7 @@ export const Sources: React.FC = () => {
         method: 'GET',
         headers: {
           Authorization:
-            'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQZWRyb1BvdGVuemEiLCJleHAiOjE2ODUzNzQwMDB9.405qS0DunwtEcX7fneQ2MZn8GNngtexDSNg-AeuJuwgeGwGXOMUQWVELj8Oa9byX7XC4I--BuPFIYVRnbUwrCg',
+            'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQZWRyb1BvdGVuemEiLCJleHAiOjE2ODU1NjYzODN9.Ohm-mVmOSnbeNhZvXRPqB0E8j05p3et430O6W9eVZQD-iNRQAb_ADbUeeQnqu2L02pOSG0UtO8ps8jhfeJg7cA',
         },
       });
 

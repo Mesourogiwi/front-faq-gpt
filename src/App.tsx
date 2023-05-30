@@ -1,41 +1,46 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { Users } from './components/Users';
-import { Widgets } from './components/Widgets';
+import { Widgets } from './components/Widgets/get';
 import { Sources } from './components/Sources';
 import { Sessions } from './components/Sessions';
 import { SessionById } from './components/SessionById';
 import { SourceMessages } from './components/SourceMessages';
 import { SessionMessages } from './components/SessionMessages';
+import { CreateWidget } from './components/Widgets/post';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/api',
     element: <Users />,
   },
   {
-    path: '/widgets',
+    path: '/api/widgets',
     element: <Widgets />,
   }, 
   {
-    path: '/sessions',
+    path: '/api/sessions',
     element: <Sessions />,
   },
   {
-    path: '/sources',
+    path: '/api/sources',
     element: <Sources />,
   },
   {
-    path: '/sessions/:id',
+    path: '/api/sessions/:id',
     element: <SessionById />,
   },
   {
-    path: '/sourceMessages',
+    path: '/api/sourceMessages',
     element: <SourceMessages />,
   },
   {
-    path: '/sessionMessages',
+    path: '/api/sessionMessages',
     element: <SessionMessages />,
+  },
+  {
+    path: '/api/createWidget',
+    element: <CreateWidget />
   }
 ]);
 
