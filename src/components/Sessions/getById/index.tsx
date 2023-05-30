@@ -1,10 +1,10 @@
 import React from 'react';
-import axiosInstance from '../../config/axios';
+import axiosInstance from '../../../config/axios';
 import { useParams } from 'react-router';
 
 export const SessionById: React.FC = () => {
   const [session, setSession] = React.useState<any | null>(null);
-  const { id } = useParams(); 
+  const { id } = useParams();
 
   const fetchSessions = async () => {
     try {
