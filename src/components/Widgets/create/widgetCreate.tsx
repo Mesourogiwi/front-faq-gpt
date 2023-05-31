@@ -1,19 +1,12 @@
 import React from 'react';
 import axiosInstance from '../../../config/axios';
 
-export const CreateWidget: React.FC = () => {
+export const WidgetCreate: React.FC = () => {
   const [widget, setWidget] = React.useState({id: 0, idUser: 0, name: ''});
 
   const [isSucess, setIsSucess] = React.useState(false);
   const [idUser, setIdUser] = React.useState(0);
   const [name, setName] = React.useState("");
-
-  const handleCreateWidget = () => {
-    console.log('idUser', idUser)
-    console.log('name', name)
-
-    
-  }
     
   const handleCreateWidgetQuery = async () => {
     try {
@@ -46,7 +39,7 @@ export const CreateWidget: React.FC = () => {
 
   return (
     <>
-      <h1>Widgets</h1>
+      <h1>Create Widgets</h1>
       <form>
         <label>Id do usuario: </label>
         <input id="id-user" type="number" value={idUser} onChange={(e) => setIdUser(e.target.valueAsNumber)}/>

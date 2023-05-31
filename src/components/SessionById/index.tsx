@@ -11,10 +11,6 @@ export const SessionById: React.FC = () => {
       const response = await axiosInstance({
         url: `/sessions/${id}`,
         method: 'GET',
-        headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQZWRyb1BvdGVuemEiLCJleHAiOjE2ODU1NjYzODN9.Ohm-mVmOSnbeNhZvXRPqB0E8j05p3et430O6W9eVZQD-iNRQAb_ADbUeeQnqu2L02pOSG0UtO8ps8jhfeJg7cA',
-        },
       });
 
       if (response?.data) setSession(response.data);

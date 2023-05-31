@@ -1,7 +1,7 @@
 import React from 'react';
 import axiosInstance from '../../../config/axios';
 
-export const Widgets: React.FC = () => {
+export const WidgetsGetAll: React.FC = () => {
   const [widgets, setWidgets] = React.useState([]);
 
   const fetchWidgets = async () => {
@@ -9,10 +9,6 @@ export const Widgets: React.FC = () => {
       const response = await axiosInstance({
         url: '/widgets/',
         method: 'GET',
-        headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQZWRyb1BvdGVuemEiLCJleHAiOjE2ODU1NjYzODN9.Ohm-mVmOSnbeNhZvXRPqB0E8j05p3et430O6W9eVZQD-iNRQAb_ADbUeeQnqu2L02pOSG0UtO8ps8jhfeJg7cA',
-        },
       });
 
       if (response?.data) setWidgets(response.data);
@@ -27,7 +23,7 @@ export const Widgets: React.FC = () => {
 
   return (
     <>
-      <h1>Widgets</h1>
+      <h1>Get All Widgets</h1>
       {widgets.map((widget: any) => (
         <div key={widget?.id}>
           <h4>Widget {widget?.id}</h4>

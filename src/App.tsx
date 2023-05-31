@@ -1,13 +1,14 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { Users } from './components/Users';
-import { Widgets } from './components/Widgets/get';
+import { WidgetsGetAll } from './components/Widgets/get/widgetGetAll';
 import { Sources } from './components/Sources';
 import { Sessions } from './components/Sessions';
 import { SessionById } from './components/SessionById';
 import { SourceMessages } from './components/SourceMessages';
 import { SessionMessages } from './components/SessionMessages';
-import { CreateWidget } from './components/Widgets/post';
+import { WidgetCreate } from './components/Widgets/create/widgetCreate';
+import { WidgetDelete } from './components/Widgets/delete/widgetDelete';
 
 const router = createBrowserRouter([
   {
@@ -15,9 +16,17 @@ const router = createBrowserRouter([
     element: <Users />,
   },
   {
-    path: '/api/widgets',
-    element: <Widgets />,
+    path: '/api/widgetsGetAll',
+    element: <WidgetsGetAll />,
+  },
+  {
+    path: '/api/widgetCreate',
+    element: <WidgetCreate />
   }, 
+  {
+    path: '/api/widgetDelete',
+    element: <WidgetDelete />
+  },
   {
     path: '/api/sessions',
     element: <Sessions />,
@@ -37,11 +46,7 @@ const router = createBrowserRouter([
   {
     path: '/api/sessionMessages',
     element: <SessionMessages />,
-  },
-  {
-    path: '/api/createWidget',
-    element: <CreateWidget />
-  }
+  }  
 ]);
 
 function App() {
