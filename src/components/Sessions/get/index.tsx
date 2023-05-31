@@ -1,5 +1,5 @@
 import React from 'react';
-import axiosInstance from '../../config/axios';
+import axiosInstance from '../../../config/axios';
 
 export const Sessions: React.FC = () => {
   const [sessions, setSessions] = React.useState([]);
