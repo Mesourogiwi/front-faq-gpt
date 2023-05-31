@@ -1,13 +1,14 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-import { WidgetsGetAll } from './components/Widgets/get/widgetGetAll';
 import { Users } from './components/Users/get';
-import { UserById } from './components/Users/getById';
-import { UserWidgetsById } from './components/Users/getWidgets';
-import { CreateUser } from './components/Users/post';
-import { EditUser } from './components/Users/put';
 import { Login } from './components/Users/login';
-import { DeleteUser } from './components/Users/delete';
+import { UserById } from './components/Users/getById';
+import { UserWidgets } from './components/Users/getWidgets';
+import { UserCreate } from './components/Users/post';
+import { UserEdit } from './components/Users/put';
+import { UserDelete } from './components/Users/delete';
+
+import { WidgetsGetAll } from './components/Widgets/get/widgetGetAll';
 import { Sources } from './components/Sources';
 import { Sessions } from './components/Sessions/get';
 import { SessionById } from './components/Sessions/getById';
@@ -16,47 +17,53 @@ import { SessionMessages } from './components/SessionMessages';
 import { WidgetCreate } from './components/Widgets/create/widgetCreate';
 import { WidgetDelete } from './components/Widgets/delete/widgetDelete';
 
-const router = createBrowserRouter([
+const userRoutes = [
   {
     path: '/api',
     element: <Users />,
-  },
-  {
-    path: '/api/widgetsGetAll',
-    element: <WidgetsGetAll />,
-  },
-  {
-    path: '/api/widgetCreate',
-    element: <WidgetCreate />
-  },
-  {
-    path: '/api/users/:id',
-    element: <UserById />
-  },
-  {
-    path: '/api/userWidgets/:id',
-    element: <UserWidgetsById />,
-  },
-  {
-    path: '/api/createUser',
-    element: <CreateUser />,
   },
   {
     path: '/api/login',
     element: <Login />,
   },
   {
-    path: '/api/editUser/:id',
-    element: <EditUser />,
+    path: '/api/userById/:id',
+    element: <UserById />,
   },
   {
-    path: '/api/deleteUser/:id',
-    element: <DeleteUser />,
+    path: '/api/userWidgets/:id',
+    element: <UserWidgets />,
+  },
+  {
+    path: '/api/userCreate',
+    element: <UserCreate />,
+  },
+  {
+    path: '/api/userEdit/:id',
+    element: <UserEdit />,
+  },
+  {
+    path: '/api/userDelete/:id',
+    element: <UserDelete />,
+  },
+];
+
+const widgetRoutes = [
+  {
+    path: '/api/widgetsGetAll',
+    element: <WidgetsGetAll />,
+  },
+  {
+    path: '/api/widgetCreate',
+    element: <WidgetCreate />,
   },
   {
     path: '/api/widgetDelete',
-    element: <WidgetDelete />
+    element: <WidgetDelete />,
   },
+];
+
+const sessionRoutes = [
   {
     path: '/api/sessions',
     element: <Sessions />,
@@ -65,6 +72,12 @@ const router = createBrowserRouter([
     path: '/api/sessions/:id',
     element: <SessionById />,
   },
+];
+
+const router = createBrowserRouter([
+  ...userRoutes,
+  ...widgetRoutes,
+  ...sessionRoutes,
   {
     path: '/api/sources',
     element: <Sources />,

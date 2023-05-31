@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router';
 import axiosInstance from '../../../config/axios';
 
-export const DeleteUser: React.FC = () => {
+export const UserDelete: React.FC = () => {
   const { id } = useParams();
 
   const deleteUser = async () => {

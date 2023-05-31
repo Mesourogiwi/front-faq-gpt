@@ -1,7 +1,7 @@
 import React from 'react';
 import axiosInstance from '../../../config/axios';
 
-export const CreateUser: React.FC = () => {
+export const UserCreate: React.FC = () => {
   const [name, setName] = React.useState<string>();
   const [login, setLogin] = React.useState<string>();
   const [password, setPassword] = React.useState<string>();

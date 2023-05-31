@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router';
 import axiosInstance from '../../../config/axios';
 
-export const EditUser: React.FC = () => {
+export const UserEdit: React.FC = () => {
   const [name, setName] = React.useState<string>();
   const [login, setLogin] = React.useState<string>();
   const [password, setPassword] = React.useState<string>();
@@ -41,7 +41,7 @@ export const EditUser: React.FC = () => {
       });
 
       if (response?.data) {
-        window.alert(`Usuário ${response.data.id} criado com sucesso!`);
+        window.alert(`Usuário ${response.data.id} editado com sucesso!`);
         setName('');
         setLogin('');
         setPassword('');

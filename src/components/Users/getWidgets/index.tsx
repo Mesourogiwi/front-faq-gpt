@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import axiosInstance from '../../../config/axios';
 
-export const UserWidgetsById: FC = () => {
+export const UserWidgets: FC = () => {
   const [widgets, setWidgets] = useState([]);
   const { id } = useParams();
 
