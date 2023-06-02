@@ -1,5 +1,5 @@
 import React from 'react';
-import axiosInstance from '../../config/axios';
+import axiosInstance from '../../../config/axios';
 
 export const SessionMessages: React.FC = () => {
   const [sessionMessage, setSessionMessage] = React.useState([]);
@@ -10,8 +10,7 @@ export const SessionMessages: React.FC = () => {
         url: '/session-messages/',
         method: 'GET',
         headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQZWRyb1BvdGVuemEiLCJleHAiOjE2ODU1NjYzODN9.Ohm-mVmOSnbeNhZvXRPqB0E8j05p3et430O6W9eVZQD-iNRQAb_ADbUeeQnqu2L02pOSG0UtO8ps8jhfeJg7cA',
+          Authorization: import.meta.env.VITE_BEARER_TOKEN,
         },
       });
 
@@ -33,7 +32,7 @@ export const SessionMessages: React.FC = () => {
           <h4>sessionMessage {sessionMessage?.id}</h4>
           <ul>
             <li>TimeStamp: {sessionMessage?.timestamp}</li>
-            <li>IsUser: {sessionMessage?.isUser}</li>
+            <li>IsUser: {sessionMessage?.isUser.toString()}</li>
             <li>Text: {sessionMessage?.text}</li>
           </ul>
         </div>
