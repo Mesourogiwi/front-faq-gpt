@@ -11,6 +11,7 @@ import { UserDelete } from './components/Users/delete';
 import { SessionMessages } from './components/SessionMessages/get';
 import { SessionMessageById } from './components/SessionMessages/getById';
 import { SessionMessageDelete } from './components/SessionMessages/delete';
+import { SessionMessageCreate } from './components/SessionMessages/create';
 
 import { WidgetsGetAll } from './components/Widgets/get/widgetGetAll';
 import { Sources } from './components/Sources';
@@ -89,28 +90,12 @@ const sessionMessagesRoutes = [
   {
     path: '/api/sessionMessageDelete/:id',
     element: <SessionMessageDelete />
-  }
-  /*
-  {
-    path: '/api/userById/:id',
-    element: <UserById />,
   },
   {
-    path: '/api/userWidgets/:id',
-    element: <UserWidgets />,
+    path: '/api/sessionMessageCreate',
+    element: <SessionMessageCreate />
   },
-  {
-    path: '/api/userCreate',
-    element: <UserCreate />,
-  },
-  {
-    path: '/api/userEdit/:id',
-    element: <UserEdit />,
-  },
-  {
-    path: '/api/userDelete/:id',
-    element: <UserDelete />,
-  },*/
+  // _TODO_ falta so o put
 ];
 
 const router = createBrowserRouter([
