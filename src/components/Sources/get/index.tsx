@@ -1,18 +1,14 @@
-import React from 'react';
-import axiosInstance from '../../config/axios';
+import {FC, useEffect, useState} from 'react';
+import axiosInstance from '../../../config/axios';
 
-export const Sources: React.FC = () => {
-  const [sources, setSources] = React.useState([]);
+export const Sources: FC = () => {
+  const [sources, setSources] = useState([]);
 
   const fetchSources = async () => {
     try {
       const response = await axiosInstance({
         url: '/sources/',
-        method: 'GET',
-        headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJQZWRyb1BvdGVuemEiLCJleHAiOjE2ODU1NjYzODN9.Ohm-mVmOSnbeNhZvXRPqB0E8j05p3et430O6W9eVZQD-iNRQAb_ADbUeeQnqu2L02pOSG0UtO8ps8jhfeJg7cA',
-        },
+        method: 'GET'
       });
 
       if (response?.data) setSources(response.data);
@@ -21,7 +17,7 @@ export const Sources: React.FC = () => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchSources();
   }, []);
 

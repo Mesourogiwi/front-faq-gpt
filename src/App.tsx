@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, RouteObject } from 'react-router-dom';
 
 import { Users } from './components/Users/get';
 import { Login } from './components/Users/login';
@@ -15,14 +15,14 @@ import { SessionMessageCreate } from './components/SessionMessages/create';
 import { SessionMessageUpdate } from './components/SessionMessages/update';
 
 import { WidgetsGetAll } from './components/Widgets/get/widgetGetAll';
-import { Sources } from './components/Sources';
+import { Sources } from './components/Sources/get';
 import { Sessions } from './components/Sessions/get';
 import { SessionById } from './components/Sessions/getById';
 import { SourceMessages } from './components/SourceMessages';
 import { WidgetCreate } from './components/Widgets/create/widgetCreate';
 import { WidgetDelete } from './components/Widgets/delete/widgetDelete';
 
-const userRoutes = [
+const userRoutes: RouteObject[] = [
   {
     path: '/api',
     element: <Users />,
@@ -53,7 +53,7 @@ const userRoutes = [
   },
 ];
 
-const widgetRoutes = [
+const widgetRoutes: RouteObject[] = [
   {
     path: '/api/widgetsGetAll',
     element: <WidgetsGetAll />,
@@ -68,7 +68,18 @@ const widgetRoutes = [
   },
 ];
 
-const sessionRoutes = [
+const sourceRoutes: RouteObject[] = [
+  {
+    path: '/api/sources',
+    element: <Sources />
+  },
+  {
+    path: '/api/sources/:id',
+    element: ''
+  }
+]
+
+const sessionRoutes: RouteObject[] = [
   {
     path: '/api/sessions',
     element: <Sessions />,
@@ -79,7 +90,7 @@ const sessionRoutes = [
   },
 ];
 
-const sessionMessagesRoutes = [
+const sessionMessagesRoutes: RouteObject[] = [
   {
     path: '/api/sessionMessages',
     element: <SessionMessages />,
@@ -105,12 +116,9 @@ const sessionMessagesRoutes = [
 const router = createBrowserRouter([
   ...userRoutes,
   ...widgetRoutes,
+  ...sourceRoutes,
   ...sessionRoutes,
   ...sessionMessagesRoutes,
-  {
-    path: '/api/sources',
-    element: <Sources />,
-  },
   {
     path: '/api/sourceMessages',
     element: <SourceMessages />,
