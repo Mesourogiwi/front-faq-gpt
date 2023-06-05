@@ -34,6 +34,7 @@ export const SessionMessages: React.FC = () => {
             <li>TimeStamp: {sessionMessage?.timestamp}</li>
             <li>IsUser: {sessionMessage?.isUser.toString()}</li>
             <li>Text: {sessionMessage?.text}</li>
+            <li>Session Id: {sessionMessage?.session?.id}</li>
           </ul>
         </div>
       ))}

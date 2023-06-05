@@ -12,6 +12,7 @@ import { SessionMessages } from './components/SessionMessages/get';
 import { SessionMessageById } from './components/SessionMessages/getById';
 import { SessionMessageDelete } from './components/SessionMessages/delete';
 import { SessionMessageCreate } from './components/SessionMessages/create';
+import { SessionMessageUpdate } from './components/SessionMessages/update';
 
 import { WidgetsGetAll } from './components/Widgets/get/widgetGetAll';
 import { Sources } from './components/Sources';
@@ -95,7 +96,10 @@ const sessionMessagesRoutes = [
     path: '/api/sessionMessageCreate',
     element: <SessionMessageCreate />
   },
-  // _TODO_ falta so o put
+  {
+    path: '/api/sessionMessageUpdate/:id',
+    element: <SessionMessageUpdate />
+  }
 ];
 
 const router = createBrowserRouter([

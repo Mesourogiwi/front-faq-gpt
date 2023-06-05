@@ -34,10 +34,13 @@ export const SessionMessageById: FC = () => {
           <span>Timestamp: {sessionMessage?.timestamp}</span>
         </li>
         <li>
-          <span>isUser: {sessionMessage?.isUser.toString()}</span>
+          <span>isUser: {sessionMessage?.isUser?.toString()}</span>
         </li>
         <li>
           <span>Texto: {sessionMessage?.text}</span>
+        </li>
+        <li>
+          <span>Session Id: {sessionMessage?.session?.id}</span>
         </li>
       </ul>
     </>
