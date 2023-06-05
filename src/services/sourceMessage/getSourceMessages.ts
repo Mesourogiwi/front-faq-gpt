@@ -6,9 +6,6 @@ export const getSourceMessages = async () => {
     const response = await axiosInstance({
       url: '/source-messages/',
       method: 'GET',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
     });
 
     return response.data as sourceMessagesResponse[];

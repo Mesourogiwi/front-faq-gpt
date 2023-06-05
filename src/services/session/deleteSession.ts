@@ -5,9 +5,6 @@ export const deleteSession = async (id: number) => {
     const response = await axiosInstance({
       url: `/sessions/${id.toString()}`,
       method: 'DELETE',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
     });
 
     return response?.data ? true : false;

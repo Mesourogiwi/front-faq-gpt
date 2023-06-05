@@ -6,9 +6,6 @@ export const getUser = async (id: number) => {
     const { data } = await axiosInstance({
       url: `/users/${id.toString()}`,
       method: 'GET',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
     });
 
     return data as userResponse;

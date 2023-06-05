@@ -11,9 +11,7 @@ export const updateWidget = async (id: number, { userId, name }: updateWidgetDat
     const response = await axiosInstance({
       url: `/widgets/${id.toString()}`,
       method: 'PUT',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
+
       data: {
         user: {
           id: userId,

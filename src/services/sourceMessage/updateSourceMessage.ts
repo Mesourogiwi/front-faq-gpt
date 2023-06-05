@@ -15,9 +15,7 @@ export const updateSourceMessage = async (
     const response = await axiosInstance({
       url: `/source-messages/${id.toString()}`,
       method: 'PUT',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
+
       data: {
         ...data,
         source: {

@@ -6,9 +6,6 @@ export const getSessionMessages = async () => {
     const response = await axiosInstance({
       url: '/session-messages/',
       method: 'GET',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
     });
 
     return response.data as sessionMessageResponse[];

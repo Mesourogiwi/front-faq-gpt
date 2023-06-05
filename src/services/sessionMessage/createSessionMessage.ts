@@ -13,9 +13,7 @@ export const createSessionMessage = async ({ sessionId, ...data }: createSession
     const response = await axiosInstance({
       url: '/session-messages/',
       method: 'POST',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
+
       data: {
         ...data,
         session: {

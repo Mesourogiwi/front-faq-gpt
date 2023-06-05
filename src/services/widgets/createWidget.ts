@@ -11,9 +11,7 @@ export const createWidget = async ({ userId, name }: createWidgetData) => {
     const response = await axiosInstance({
       url: '/widgets/',
       method: 'POST',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
+
       data: {
         user: {
           id: userId,

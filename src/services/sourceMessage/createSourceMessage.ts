@@ -12,9 +12,7 @@ export const createSourceMessage = async ({ sourceId, ...data }: createSourceMes
     const response = await axiosInstance({
       url: '/source-messages/',
       method: 'POST',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
+
       data: {
         ...data,
         source: {

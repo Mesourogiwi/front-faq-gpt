@@ -11,9 +11,7 @@ export const createSource = async ({ widgetId, channel }: createSourceData) => {
     const response = await axiosInstance({
       url: '/sources/',
       method: 'POST',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
+
       data: {
         widget: {
           id: widgetId,

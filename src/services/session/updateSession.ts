@@ -15,9 +15,7 @@ export const updateSession = async (
     const response = await axiosInstance({
       url: `/sessions/${id.toString()}`,
       method: 'PUT',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
+
       data: {
         widget: {
           id: widgetId,

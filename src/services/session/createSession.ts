@@ -12,9 +12,7 @@ export const createSession = async ({ widgetId, startDate, endDate }: createSess
     const response = await axiosInstance({
       url: '/sessions/',
       method: 'POST',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
+
       data: {
         widget: {
           id: widgetId,

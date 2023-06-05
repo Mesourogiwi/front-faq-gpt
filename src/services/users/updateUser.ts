@@ -12,9 +12,7 @@ export const updateUser = async (id: number, data: updateUserData) => {
     const response = await axiosInstance({
       url: `/users/${id.toString()}`,
       method: 'PUT',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
+
       data,
     });
 

@@ -6,9 +6,6 @@ export const getSource = async (id: number) => {
     const response = await axiosInstance({
       url: `/sources/${id.toString()}`,
       method: 'GET',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
     });
 
     return response.data as sourceResponse;

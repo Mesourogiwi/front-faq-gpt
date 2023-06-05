@@ -16,9 +16,7 @@ export const updateSessionMessage = async (
     const response = await axiosInstance({
       url: `/session-messages/${id.toString()}`,
       method: 'PUT',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
+
       data: {
         ...data,
         session: {

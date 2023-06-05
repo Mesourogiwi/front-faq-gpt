@@ -6,9 +6,6 @@ export const getUserWidgets = async (id: number) => {
     const { data } = await axiosInstance({
       url: `/users/${id.toString()}/widgets`,
       method: 'GET',
-      headers: {
-        Authorization: import.meta.env.VITE_BEARER_TOKEN,
-      },
     });
 
     return data as widgetResponse[];
