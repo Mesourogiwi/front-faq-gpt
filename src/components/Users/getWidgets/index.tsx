@@ -6,7 +6,7 @@ export const UserWidgets: FC = () => {
   const [widgets, setWidgets] = useState([]);
   const { id } = useParams();
 
-  const getUser = async () => {
+  const getUserWidgets = async () => {
     try {
       const { data } = await axiosInstance({
         url: `/users/${id}/widgets`,
@@ -23,7 +23,7 @@ export const UserWidgets: FC = () => {
   };
 
   useEffect(() => {
-    getUser();
+    getUserWidgets();
   }, []);
 
   return (
