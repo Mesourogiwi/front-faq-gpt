@@ -1,4 +1,4 @@
-import type { sourceMessagesResponse } from './sourceMessages';
+import type { sourceMessagesResponse } from '.';
 
 export type sourceResponse = {
   id: number;
