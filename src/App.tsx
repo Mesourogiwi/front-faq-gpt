@@ -21,6 +21,10 @@ import { SessionById } from './components/Sessions/getById';
 import { SourceMessages } from './components/SourceMessages';
 import { WidgetCreate } from './components/Widgets/create/widgetCreate';
 import { WidgetDelete } from './components/Widgets/delete/widgetDelete';
+import { WidgetGetById } from './components/Widgets/get/widgetGetById';
+import { WidgetGetSessions } from './components/Widgets/get/widgetGetSessions';
+import { WidgetGetSources } from './components/Widgets/get/widgetGetSources';
+import { WidgetUpdate } from './components/Widgets/update/widgetUpdate';
 
 const userRoutes: RouteObject[] = [
   {
@@ -59,12 +63,28 @@ const widgetRoutes: RouteObject[] = [
     element: <WidgetsGetAll />,
   },
   {
+    path: '/api/widgetsGetById',
+    element: <WidgetGetById />,
+  },
+  {
+    path: '/api/widgetsGetSessions',
+    element: <WidgetGetSessions />,
+  },
+  {
+    path: '/api/widgetsGetSources',
+    element: <WidgetGetSources />,
+  },
+  {
     path: '/api/widgetCreate',
     element: <WidgetCreate />,
   },
   {
     path: '/api/widgetDelete',
     element: <WidgetDelete />,
+  },
+  {
+    path: '/api/widgetUpdate',
+    element: <WidgetUpdate />,
   },
 ];
 
