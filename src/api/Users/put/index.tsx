@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import axiosInstance from '../../../config/axios';
 import { getUser, updateUser } from '../../../services/users';
 
 export const UserEdit: React.FC = () => {
