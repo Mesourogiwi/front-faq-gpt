@@ -1,29 +1,19 @@
 import { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import axiosInstance from '../../../config/axios';
+import { getUser } from '../../../services/users';
+import { userResponse } from '../../../types';
 
 export const UserById: FC = () => {
-  const [user, setUser] = useState<any>();
+  const [user, setUser] = useState<userResponse>();
   const { id } = useParams();
 
-  const getUser = async () => {
-    try {
-      const { data } = await axiosInstance({
-        url: `/users/${id}`,
-        method: 'GET',
-        headers: {
-          Authorization: import.meta.env.VITE_BEARER_TOKEN,
-        },
-      });
-
-      setUser(data);
-    } catch (err) {
-      console.log(err);
-    }
+  const fetchUser = async () => {
+    const response = await getUser(Number(id));
+    setUser(response);
   };
 
   useEffect(() => {
-    getUser();
+    fetchUser();
   }, []);
 
   return (

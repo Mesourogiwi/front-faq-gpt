@@ -1,27 +1,18 @@
 import { FC, useState, useEffect } from 'react';
-import axiosInstance from '../../../config/axios';
+import { getUsers } from '../../../services/users';
+import { userResponse } from '../../../types';
 
 export const Users: FC = () => {
-  const [usersData, setUsersData] = useState([]);
+  const [usersData, setUsersData] = useState<userResponse[]>([]);
 
-  const getUsers = async () => {
-    try {
-      const { data } = await axiosInstance({
-        url: '/users/',
-        method: 'GET',
-      });
-
-      setUsersData(data);
-    } catch (err) {
-      console.log(err);
-    }
+  const fetchUsers = async () => {
+    const response = await getUsers();
+    if (response) setUsersData(response);
   };
 
   useEffect(() => {
-    getUsers();
+    fetchUsers();
   }, []);
-
-  console.log(usersData);
 
   return (
     <>

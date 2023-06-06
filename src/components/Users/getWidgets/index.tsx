@@ -1,29 +1,19 @@
 import { FC, useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import axiosInstance from '../../../config/axios';
+import { getUserWidgets } from '../../../services/users';
+import { widgetResponse } from '../../../types';
 
 export const UserWidgets: FC = () => {
-  const [widgets, setWidgets] = useState([]);
+  const [widgets, setWidgets] = useState<widgetResponse[]>([]);
   const { id } = useParams();
 
-  const getUserWidgets = async () => {
-    try {
-      const { data } = await axiosInstance({
-        url: `/users/${id}/widgets`,
-        method: 'GET',
-        headers: {
-          Authorization: import.meta.env.VITE_BEARER_TOKEN,
-        },
-      });
-
-      setWidgets(data);
-    } catch (err) {
-      console.log(err);
-    }
+  const fetchUserWidgets = async () => {
+    const response = await getUserWidgets(Number(id));
+    if (response) setWidgets(response);
   };
 
   useEffect(() => {
-    getUserWidgets();
+    fetchUserWidgets();
   }, []);
 
   return (

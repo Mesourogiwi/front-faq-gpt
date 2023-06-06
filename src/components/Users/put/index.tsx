@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router';
 import axiosInstance from '../../../config/axios';
+import { getUser, updateUser } from '../../../services/users';
 
 export const UserEdit: React.FC = () => {
   const [name, setName] = React.useState<string>();
@@ -8,51 +9,33 @@ export const UserEdit: React.FC = () => {
   const [password, setPassword] = React.useState<string>();
   const { id } = useParams();
 
-  const getUser = async () => {
-    try {
-      const { data } = await axiosInstance({
-        url: `/users/${id}`,
-        method: 'GET',
-        headers: {
-          Authorization: import.meta.env.VITE_BEARER_TOKEN,
-        },
-      });
-
-      setName(data.name);
-      setLogin(data.login);
-    } catch (err) {
-      console.log(err);
+  const fetchUser = async () => {
+    const response = await getUser(Number(id));
+    if (response) {
+      setName(response.name);
+      setLogin(response.login);
     }
   };
 
   const editUser = async () => {
-    try {
-      const response = await axiosInstance({
-        url: `/users/${id}`,
-        method: 'PUT',
-        headers: {
-          Authorization: import.meta.env.VITE_BEARER_TOKEN,
-        },
-        data: {
-          name,
-          login,
-          password,
-        },
-      });
+    if (!name || !login || !password) return;
 
-      if (response?.data) {
-        window.alert(`Usuário ${response.data.id} editado com sucesso!`);
-        setName('');
-        setLogin('');
-        setPassword('');
-      }
-    } catch (err) {
-      console.log(err);
+    const response = await updateUser(Number(id), {
+      name,
+      login,
+      password,
+    });
+
+    if (response) {
+      window.alert(`Usuário ${response.id} editado com sucesso!`);
+      setName(response.name);
+      setLogin(response.login);
+      setPassword('');
     }
   };
 
   React.useEffect(() => {
-    getUser();
+    fetchUser();
   }, []);
 
   return (

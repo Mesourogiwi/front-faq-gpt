@@ -1,34 +1,25 @@
 import React from 'react';
-import axiosInstance from '../../../config/axios';
+import { createUser } from '../../../services/users';
 
 export const UserCreate: React.FC = () => {
   const [name, setName] = React.useState<string>();
   const [login, setLogin] = React.useState<string>();
   const [password, setPassword] = React.useState<string>();
 
-  const createUser = async () => {
-    try {
-      const response = await axiosInstance({
-        url: '/users/',
-        method: 'POST',
-        headers: {
-          Authorization: import.meta.env.VITE_BEARER_TOKEN,
-        },
-        data: {
-          name,
-          login,
-          password,
-        },
-      });
+  const handleCreateUser = async () => {
+    if (!name || !password || !login) return;
 
-      if (response?.data) {
-        window.alert(`Usuário ${response.data.id} criado com sucesso!`);
-        setName('');
-        setLogin('');
-        setPassword('');
-      }
-    } catch (err) {
-      console.log(err);
+    const response = await createUser({
+      name,
+      login,
+      password,
+    });
+
+    if (response) {
+      window.alert(`Usuário ${response.id} criado com sucesso!`);
+      setName('');
+      setLogin('');
+      setPassword('');
     }
   };
 
@@ -52,7 +43,7 @@ export const UserCreate: React.FC = () => {
       />
       <br />
       <br />
-      <button onClick={createUser}>Cadastrar</button>
+      <button onClick={handleCreateUser}>Cadastrar</button>
     </div>
   );
 };
