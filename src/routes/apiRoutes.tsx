@@ -8,19 +8,25 @@ import { UserCreate } from '../api/Users/post';
 import { UserEdit } from '../api/Users/put';
 import { UserDelete } from '../api/Users/delete';
 
+import { WidgetsGetAll } from '../api/Widgets/get/widgetGetAll';
+import { WidgetCreate } from '../api/Widgets/create/widgetCreate';
+import { WidgetDelete } from '../api/Widgets/delete/widgetDelete';
+import { WidgetGetById } from '../api/Widgets/getById/widgetGetById';
+import { WidgetGetSessions } from '../api/Widgets/getSessions/widgetGetSessions';
+import { WidgetGetSources } from '../api/Widgets/getSources/widgetGetSources';
+import { WidgetUpdate } from '../api/Widgets/update/widgetUpdate';
+
 import { SessionMessages } from '../api/SessionMessages/get';
 import { SessionMessageById } from '../api/SessionMessages/getById';
 import { SessionMessageDelete } from '../api/SessionMessages/delete';
 import { SessionMessageCreate } from '../api/SessionMessages/create';
 import { SessionMessageUpdate } from '../api/SessionMessages/update';
 
-import { WidgetsGetAll } from '../api/Widgets/get/widgetGetAll';
 import { Sources } from '../api/Sources/get';
 import { Sessions } from '../api/Sessions/get';
 import { SessionById } from '../api/Sessions/getById';
 import { SourceMessages } from '../api/SourceMessages';
-import { WidgetCreate } from '../api/Widgets/create/widgetCreate';
-import { WidgetDelete } from '../api/Widgets/delete/widgetDelete';
+
 import { Api } from '../api';
 
 const userRoutes: RouteObject[] = [
@@ -60,12 +66,28 @@ const widgetRoutes: RouteObject[] = [
     element: <WidgetsGetAll />,
   },
   {
+    path: '/api/widgetsGetById',
+    element: <WidgetGetById />,
+  },
+  {
+    path: '/api/widgetsGetSessions',
+    element: <WidgetGetSessions />,
+  },
+  {
+    path: '/api/widgetsGetSources',
+    element: <WidgetGetSources />,
+  },
+  {
     path: '/api/widgetCreate',
     element: <WidgetCreate />,
   },
   {
     path: '/api/widgetDelete',
     element: <WidgetDelete />,
+  },
+  {
+    path: '/api/widgetUpdate',
+    element: <WidgetUpdate />,
   },
 ];
 
