@@ -21,10 +21,11 @@ import { SessionById } from '../api/Sessions/getById';
 import { SourceMessages } from '../api/SourceMessages';
 import { WidgetCreate } from '../api/Widgets/create/widgetCreate';
 import { WidgetDelete } from '../api/Widgets/delete/widgetDelete';
+import { Api } from '../api';
 
 const userRoutes: RouteObject[] = [
   {
-    path: '/api',
+    path: '/api/usersGetAll',
     element: <Users />,
   },
   {
@@ -127,4 +128,8 @@ export const apiRoutes = [
   ...sessionRoutes,
   ...sessionMessagesRoutes,
   ...sourceMessagesRoutes,
+  {
+    path: '/api',
+    element: <Api />,
+  },
 ];
