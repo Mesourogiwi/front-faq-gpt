@@ -1,5 +1,5 @@
 import React from 'react';
-import { PALETTE } from '../../config/palette';
+import { PALETTE } from '../../../config/palette';
 
 type Props = {
   text: string;
@@ -23,7 +23,7 @@ export const LandingPageContainer: React.FC<Props> = ({ text, bottomElement, rig
           height: '100%',
           gap: '82px',
           justifyContent: 'center',
-          maxWidth: '50%',
+          width: '50%',
         }}>
         <div style={{ textAlign: 'end' }}>
           <p style={{ fontSize: '80px' }}>
@@ -38,7 +38,7 @@ export const LandingPageContainer: React.FC<Props> = ({ text, bottomElement, rig
           {bottomElement}
         </div>
       </div>
-      <div style={{ maxWidth: '50%' }}>{rightElement}</div>
+      <div style={{ width: '50%' }}>{rightElement}</div>
     </div>
   );
 };

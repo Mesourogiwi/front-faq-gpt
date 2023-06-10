@@ -4,6 +4,7 @@ import { Button as MUIButton } from '@mui/material';
 type ButtonProps = {
   text: string;
   onClick: () => void;
+  size?: 'small' | 'medium' | 'large';
   variant?: 'text' | 'contained' | 'outlined';
   dark?: boolean;
 };
@@ -11,11 +12,12 @@ type ButtonProps = {
 export const Button: React.FC<ButtonProps> = ({
   text,
   onClick,
+  size = 'medium',
   variant = 'contained',
   dark = false,
 }) => {
   return (
-    <MUIButton variant={variant} color={dark ? 'primary' : 'info'} onClick={onClick}>
+    <MUIButton size={size} variant={variant} color={dark ? 'primary' : 'info'} onClick={onClick}>
       {text}
     </MUIButton>
   );

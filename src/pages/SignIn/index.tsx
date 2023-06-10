@@ -1,6 +1,8 @@
 import React from 'react';
-import { Box, Button, Footer, Header, LandingPageContainer } from '../../components';
 import { useNavigate } from 'react-router-dom';
+import { Box, Button, Footer, Header } from '../../components';
+import { LandingPageContainer } from '../Landing/LandingPageContainer';
+import { SignInForm } from './SignInForm';
 
 export const SignInPage: React.FC = () => {
   const navigate = useNavigate();
@@ -17,7 +19,11 @@ export const SignInPage: React.FC = () => {
       <div style={{ height: '100vh', padding: '100px 0' }}>
         <LandingPageContainer
           text="Ready to make your bussiness reach another level of client satisfaction?"
-          rightElement={<Box title="Who are you?">abc</Box>}
+          rightElement={
+            <Box title="Who are you?">
+              <SignInForm />
+            </Box>
+          }
         />
       </div>
       <Footer />

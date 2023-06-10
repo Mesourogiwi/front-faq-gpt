@@ -15,7 +15,6 @@ export const Box: React.FC<PropsWithChildren<Props>> = ({ title, children }) => 
           borderTopLeftRadius: '26px',
           backgroundColor: '#000000',
           color: 'white',
-          textAlign: 'center',
           padding: '16px 32px',
         }}>
         <p>{title}</p>

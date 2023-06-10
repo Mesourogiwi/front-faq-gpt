@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button, Footer, Header, LandingPageContainer } from '../../components';
 import { useNavigate } from 'react-router-dom';
+
+import { Button, Footer, Header } from '../../components';
+import { LandingPageContainer } from './LandingPageContainer';
 
 export const LandingPage: React.FC = () => {
   const navigate = useNavigate();
