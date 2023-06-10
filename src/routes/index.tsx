@@ -4,6 +4,7 @@ import { apiRoutes } from './apiRoutes';
 import { LandingPage } from '../pages/Landing';
 import { SignInPage } from '../pages/SignIn';
 import { SignUpPage } from '../pages/SignUp';
+import { ResetPasswordPage } from '../pages/ResetPassword';
 
 export const routes: RouteObject[] = [
   ...apiRoutes,
@@ -18,5 +19,9 @@ export const routes: RouteObject[] = [
   {
     path: '/sign-up',
     element: <SignUpPage />,
+  },
+  {
+    path: '/reset-password',
+    element: <ResetPasswordPage />,
   },
 ];
