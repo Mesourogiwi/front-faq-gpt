@@ -38,7 +38,7 @@ export const LandingPageContainer: React.FC<Props> = ({ text, bottomElement, rig
           {bottomElement}
         </div>
       </div>
-      <div style={{ width: '50%' }}>{rightElement}</div>
+      <div style={{ alignItems: 'center', display: 'flex', width: '50%' }}>{rightElement}</div>
     </div>
   );
 };
