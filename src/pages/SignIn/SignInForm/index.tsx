@@ -1,15 +1,18 @@
 import { TextField } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 import { PALETTE } from '../../../config/palette';
 import { Button } from '../../../components';
 import { login } from '../../../services/users';
+import { currentUserState } from '../../../state/user';
 
 export const SignInForm: React.FC = () => {
   const [email, setEmail] = React.useState<string | undefined>();
   const [password, setPassword] = React.useState<string | undefined>();
   const [errorMessage, setErrorMessage] = React.useState<string | undefined>();
+  const setCurrentUser = useSetRecoilState(currentUserState);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -21,6 +24,7 @@ export const SignInForm: React.FC = () => {
     const response = await login({ login: email, password });
     if (response) {
       localStorage.setItem('token', response.Authorization);
+      setCurrentUser(response);
       navigate('/user');
     } else {
       setErrorMessage("This user doesn't exist, try again!");

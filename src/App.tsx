@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from '@mui/material/styles';
 
 import { routes } from './routes';
@@ -9,7 +10,9 @@ const router = createBrowserRouter(routes);
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <RouterProvider router={router} />
+      <RecoilRoot>
+        <RouterProvider router={router} />
+      </RecoilRoot>
     </ThemeProvider>
   );
 }
