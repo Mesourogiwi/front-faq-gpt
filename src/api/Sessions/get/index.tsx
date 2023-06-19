@@ -1,7 +1,7 @@
 import React from 'react';
 import axiosInstance from '../../../config/axios';
 
-export const Sessions: React.FC = () => {
+export const SessionsApi: React.FC = () => {
   const [sessions, setSessions] = React.useState([]);
 
   const fetchSessions = async () => {

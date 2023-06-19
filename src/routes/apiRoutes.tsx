@@ -23,11 +23,15 @@ import { SessionMessageCreate } from '../api/SessionMessages/create';
 import { SessionMessageUpdate } from '../api/SessionMessages/update';
 
 import { Sources } from '../api/Sources/get';
-import { Sessions } from '../api/Sessions/get';
+import { SessionsApi } from '../api/Sessions/get';
 import { SessionById } from '../api/Sessions/getById';
 import { SourceMessages } from '../api/SourceMessages';
 
 import { Api } from '../api';
+import Home from '../pages/Admin/Home';
+import User from '../pages/Admin/User';
+import DataSources from '../pages/Admin/DataSources';
+import Sessions from '../pages/Admin/Sessions';
 
 const userRoutes: RouteObject[] = [
   {
@@ -105,7 +109,7 @@ const sourceRoutes: RouteObject[] = [
 const sessionRoutes: RouteObject[] = [
   {
     path: '/api/sessions',
-    element: <Sessions />,
+    element: <SessionsApi />,
   },
   {
     path: '/api/sessions/:id',
@@ -143,6 +147,25 @@ const sourceMessagesRoutes: RouteObject[] = [
   },
 ];
 
+const adminRoutes: RouteObject[] = [
+  {
+    path: '/admin/home',
+    element: <Home />,
+  },
+  {
+    path: '/admin/user',
+    element: <User />,
+  },
+  {
+    path: '/admin/dataSources',
+    element: <DataSources />,
+  },
+  {
+    path: '/admin/sessions',
+    element: <Sessions />,
+  },
+];
+
 export const apiRoutes = [
   ...userRoutes,
   ...widgetRoutes,
@@ -150,6 +173,7 @@ export const apiRoutes = [
   ...sessionRoutes,
   ...sessionMessagesRoutes,
   ...sourceMessagesRoutes,
+  ...adminRoutes,
   {
     path: '/api',
     element: <Api />,

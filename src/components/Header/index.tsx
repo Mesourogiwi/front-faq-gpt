@@ -2,13 +2,17 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 
-import { currentUserState } from '../../../state/user';
-import { Button } from '../../Button';
-import { HeaderContainer } from '../HeaderContainer';
+import { currentUserState } from '../../state/user';
+import { CustomButton } from '../CustomButton';
+import * as S from './styles';
+import { Box } from '@mui/material';
 
 type Props = {
   rightElement?: JSX.Element;
 };
+
+//adicionar enumeração para o que deve aparecer na direita
+//exemplo: enum RightElement { signInSignUp, signOut, alreadyClient }
 
 export const Header: React.FC<Props> = ({ rightElement }) => {
   const currentUser = useRecoilValue(currentUserState);
@@ -21,12 +25,18 @@ export const Header: React.FC<Props> = ({ rightElement }) => {
     navigate('/');
   };
 
+  console.log(currentUser)
+
   return (
-    <HeaderContainer>
+    <S.HeaderContainer>
       {currentUser ? (
         <>
           <p>It's not a Widget</p>
-          <Button size="small" variant="outlined" text="Sign out" onClick={logout} />
+          <S.LoggedUser>
+            <p>{currentUser.name}</p>
+            <CustomButton size="small" variant="outlined" text="Sign out" onClick={logout} />
+          </S.LoggedUser>
+          
         </>
       ) : (
         <>
@@ -34,6 +44,6 @@ export const Header: React.FC<Props> = ({ rightElement }) => {
           {rightElement}
         </>
       )}
-    </HeaderContainer>
+    </S.HeaderContainer>
   );
 };

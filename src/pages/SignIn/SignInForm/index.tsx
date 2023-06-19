@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
 import { PALETTE } from '../../../config/palette';
-import { Button } from '../../../components';
+import { CustomButton } from '../../../components';
 import { login } from '../../../services/users';
 import { currentUserState } from '../../../state/user';
 
@@ -25,7 +25,7 @@ export const SignInForm: React.FC = () => {
     if (response) {
       localStorage.setItem('token', response.Authorization);
       setCurrentUser(response);
-      navigate('/user');
+      navigate('/admin/home');
     } else {
       setErrorMessage("This user doesn't exist, try again!");
     }
@@ -76,14 +76,14 @@ export const SignInForm: React.FC = () => {
         </button>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Button
+        <CustomButton
           dark
           size="small"
           variant="outlined"
           text="Want to be a client?"
           onClick={() => navigate('/sign-up')}
         />
-        <Button dark size="large" text="Let's go" onClick={handleLogin} />
+        <CustomButton dark size="large" text="Let's go" onClick={handleLogin} />
       </div>
     </div>
   );

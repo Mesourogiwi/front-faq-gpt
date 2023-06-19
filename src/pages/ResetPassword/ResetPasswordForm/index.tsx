@@ -2,7 +2,7 @@ import { TextField } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '../../../components';
+import { CustomButton } from '../../../components';
 import { getUserByLogin, updateUser } from '../../../services/users';
 import { getRandomToken } from '../../../utils/getRandomToken';
 import { userResponse } from '../../../types';
@@ -96,7 +96,7 @@ export const ResetPasswordForm: React.FC = () => {
             }}
             helperText={errorMessageEmail}
           />
-          <Button dark variant="outlined" text="Send a token" onClick={sendToken} />
+          <CustomButton dark variant="outlined" text="Send a token" onClick={sendToken} />
           <TextField
             fullWidth
             label="Valid token"
@@ -136,14 +136,14 @@ export const ResetPasswordForm: React.FC = () => {
         </>
       )}
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Button
+        <CustomButton
           dark
           size="small"
           variant="outlined"
           text="Back to login"
           onClick={() => navigate('/sign-in')}
         />
-        <Button
+        <CustomButton
           dark
           size="large"
           text={creatingNewPassword ? 'Change Password' : 'Create new Password'}

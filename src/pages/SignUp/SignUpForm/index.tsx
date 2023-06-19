@@ -2,7 +2,7 @@ import { TextField } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button } from '../../../components';
+import { CustomButton } from '../../../components';
 import { createUser } from '../../../services/users';
 
 export const SignUpForm: React.FC = () => {
@@ -83,14 +83,14 @@ export const SignUpForm: React.FC = () => {
         helperText={errorMessage}
       />
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Button
+        <CustomButton
           dark
           size="small"
           variant="outlined"
           text="Already a client?"
           onClick={() => navigate('/sign-in')}
         />
-        <Button dark size="large" text="Let's go" onClick={handleSignUp} />
+        <CustomButton dark size="large" text="Let's go" onClick={handleSignUp} />
       </div>
     </div>
   );

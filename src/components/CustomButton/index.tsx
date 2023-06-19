@@ -9,7 +9,7 @@ type ButtonProps = {
   dark?: boolean;
 };
 
-export const Button: React.FC<ButtonProps> = ({
+export const CustomButton: React.FC<ButtonProps> = ({
   text,
   onClick,
   size = 'medium',

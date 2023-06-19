@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, Footer, Header } from '../../components';
+import { CustomBox, CustomButton, Footer, Header } from '../../components';
 import { LandingPageContainer } from '../Landing/LandingPageContainer';
 import { SignInForm } from './SignInForm';
 
@@ -12,7 +12,7 @@ export const SignInPage: React.FC = () => {
       <Header
         rightElement={
           <div style={{ display: 'flex', gap: '16px' }}>
-            <Button onClick={() => navigate('/sign-up')} variant="outlined" text="Not a client?" />
+            <CustomButton onClick={() => navigate('/sign-up')} variant="outlined" text="Not a client?" />
           </div>
         }
       />
@@ -20,9 +20,9 @@ export const SignInPage: React.FC = () => {
         <LandingPageContainer
           text="Ready to make your bussiness reach another level of client satisfaction?"
           rightElement={
-            <Box title="Who are you?">
+            <CustomBox title="Who are you?">
               <SignInForm />
-            </Box>
+            </CustomBox>
           }
         />
       </div>

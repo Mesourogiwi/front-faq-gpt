@@ -10,4 +10,5 @@ export type userResponse = {
 export type loginResponse = {
   id: number;
   Authorization: string;
+  name: string;
 };

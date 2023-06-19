@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import landingPageImg from '../../assets/landing.png';
 
-import { Button, Footer, Header } from '../../components';
+import { CustomButton, Footer, Header } from '../../components';
 import { LandingPageContainer } from './LandingPageContainer';
 import { Card } from './Card';
 
@@ -16,8 +16,8 @@ export const LandingPage: React.FC = () => {
       <Header
         rightElement={
           <div style={{ display: 'flex', gap: '16px' }}>
-            <Button onClick={() => navigate('/sign-up')} variant="text" text="Sign Up" />
-            <Button onClick={() => navigate('/sign-in')} variant="outlined" text="Sign In" />
+            <CustomButton onClick={() => navigate('/sign-up')} variant="text" text="Sign Up aaa"/>
+            <CustomButton onClick={() => navigate('/sign-in')} variant="outlined" text="Sign In" />
           </div>
         }
       />
@@ -27,7 +27,7 @@ export const LandingPage: React.FC = () => {
           integrated in your website."
           bottomElement={
             <div style={{ marginTop: '10px' }}>
-              <Button
+              <CustomButton
                 dark
                 onClick={() => ref.current?.scrollIntoView()}
                 text="Want to know more?"

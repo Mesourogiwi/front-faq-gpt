@@ -6,7 +6,7 @@ type Props = {
   title: string;
 };
 
-export const Box: React.FC<PropsWithChildren<Props>> = ({ title, children }) => {
+export const CustomBox: React.FC<PropsWithChildren<Props>> = ({ title, children }) => {
   return (
     <Container width="500px">
       <div
