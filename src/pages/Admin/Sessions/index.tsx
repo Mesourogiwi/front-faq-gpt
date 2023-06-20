@@ -4,6 +4,7 @@ import { Header, CustomButton, Footer } from '../../../components';
 import { useNavigate } from 'react-router-dom';
 import SideMenu from './../components/sideMenu';
 import * as S from './styles';
+import { SessionList } from './SessionList';
 
 //para chegar nessa tela utilize: http://localhost:5173/admin/sessions
 export default function Sessions() {
@@ -23,8 +24,10 @@ export default function Sessions() {
       <S.Container>
         <SideMenu />
         <S.RightContainer>
-          <h1> Sessions</h1>
-          {/* Coloque o contudo da página aqui */}
+          <div>
+            <h1> Sessions</h1>
+          <SessionList />
+          </div>
         </S.RightContainer>
         <Footer />
       </S.Container>
