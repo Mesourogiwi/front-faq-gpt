@@ -25,7 +25,7 @@ export const Header: React.FC<Props> = ({ rightElement }) => {
     navigate('/');
   };
 
-  console.log(currentUser)
+  // console.log(currentUser)
 
   return (
     <S.HeaderContainer>
@@ -36,7 +36,6 @@ export const Header: React.FC<Props> = ({ rightElement }) => {
             <p>{currentUser.name}</p>
             <CustomButton size="small" variant="outlined" text="Sign out" onClick={logout} />
           </S.LoggedUser>
-          
         </>
       ) : (
         <>

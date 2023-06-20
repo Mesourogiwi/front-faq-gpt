@@ -149,19 +149,19 @@ const sourceMessagesRoutes: RouteObject[] = [
 
 const adminRoutes: RouteObject[] = [
   {
-    path: '/admin/home',
+    path: '/admin/Home',
     element: <Home />,
   },
   {
-    path: '/admin/user',
+    path: '/admin/User',
     element: <User />,
   },
   {
-    path: '/admin/dataSources',
+    path: '/admin/DataSources',
     element: <DataSources />,
   },
   {
-    path: '/admin/sessions',
+    path: '/admin/Sessions',
     element: <Sessions />,
   },
 ];
