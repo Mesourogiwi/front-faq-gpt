@@ -2,9 +2,9 @@ import axiosInstance from '../../config/axios';
 import { sessionResponse } from '../../types';
 
 export type updateSessionData = {
-  widgetId: number;
-  startDate: string;
-  endDate: string;
+  widgetId?: number;
+  startDate?: string;
+  endDate?: string;
 };
 
 export const updateSession = async (
