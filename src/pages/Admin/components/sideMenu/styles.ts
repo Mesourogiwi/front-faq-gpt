@@ -5,7 +5,7 @@ export const Container = styled(Box)<BoxProps>(() => ({
   borderRight: '2px solid #000',
   width: '256px',
   flexDirection: 'column',
-  height: 'calc(100vh - 52px)',
+  height: 'calc(100vh - 70px)',
   alignContent: 'center',
   marginBottom: '36px',
 }));
@@ -28,6 +28,7 @@ export const Option = styled(Box)<OptionProps>(({ selected }) => ({
   color: selected ? '#fff' : '#000',
   width: '224px',
   marginLeft: '16px',
+  marginRight: '16px',
   padding: '16px 0px 16px 16px',
   flexDirection: 'column',
 
