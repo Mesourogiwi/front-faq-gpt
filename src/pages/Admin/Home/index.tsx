@@ -27,14 +27,14 @@ export default function Home() {
   const [responseStatus, setResponseStatus] = useState<{
     action: string;
     name: string;
-  }>(null);
+  }>();
 
   const today = new Date();
   const currentDate = today.toLocaleDateString();
 
   const getWidgetId = async () => {
     const response = await getWidgets();
-    console.log(response);
+    // console.log(response);
     if (response) {
       setWidgets(response.sort((a, b) => a.id - b.id));
       if (widgetSelected === undefined) {
@@ -48,21 +48,19 @@ export default function Home() {
   const handleUpdateWidgetName = async (name: string) => {
     if (!currentUser) return;
     const response = await updateWidget(widgetSelected.id, { name: name, userId: currentUser.id });
-    console.log(response);
+    // console.log(response);
 
     const newList = await getWidgetId();
     if (newList) setResponseStatus({ action: 'update', name: name });
-    console.log('a', responseStatus);
   };
 
   const handleCreateWidget = async (name: string) => {
     if (!currentUser) return;
     const response = await createWidget({ name: name, userId: currentUser.id });
-    console.log(response);
+    // console.log(response);
 
     const newList = await getWidgetId();
     if (newList) setResponseStatus({ action: 'create', name: name });
-    console.log('a', responseStatus);
   };
 
   const handleDeleteWidget = async () => {
