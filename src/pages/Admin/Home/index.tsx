@@ -1,20 +1,33 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+
 import { Header, CustomButton, Footer } from '../../../components';
 
-import { useNavigate } from 'react-router-dom';
 import SideMenu from './../components/sideMenu';
-import * as S from './styles';
-import { useRecoilValue } from 'recoil';
 import { currentUserState } from '../../../state/user';
+import { getWidgets } from '../../../services/widgets';
+import { Widget } from '../../../components/Widget';
+
+import * as S from './styles';
 
 //para chegar nessa tela utilize: http://localhost:5173/admin/[nome da tela]
 //exemplo: http://localhost:5173/admin/home
 export default function Home() {
   const navigate = useNavigate();
-  // const currentUser = useRecoilValue(currentUserState);
+  const currentUser = useRecoilValue(currentUserState);
+  const [widgetId, setWidgetId] = React.useState<number | undefined>();
 
-  // console.log(`currentUser`);
-  // if (!currentUser) navigate('/sign-up');
+  const getWidgetId = async () => {
+    const widgets = await getWidgets();
+    console.log(widgets);
+    if (widgets) setWidgetId(widgets[0].id);
+  };
+
+  React.useEffect(() => {
+    if (!currentUser) navigate('/sign-up');
+    getWidgetId();
+  }, []);
 
   return (
     <>
@@ -30,6 +43,7 @@ export default function Home() {
       <S.Container>
         <SideMenu />
         <S.RightContainer>
+          {widgetId && <Widget widgetId={widgetId} />}
           <h1> Home</h1>
           {/* Coloque o contudo da página aqui */}
         </S.RightContainer>

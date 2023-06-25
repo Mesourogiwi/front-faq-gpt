@@ -10,20 +10,21 @@ import { sessionMessageResponse } from '../../types';
 
 import * as S from './styles';
 import { Loading } from '../Loading';
+import { Messages } from '../Messages';
 
 type Props = {
   widgetId: number;
 };
 
-export const Widget: React.FC<Props> = ({ widgetId = 43 }) => {
+export const Widget: React.FC<Props> = ({ widgetId }) => {
   const [showChat, setShowChat] = React.useState(false);
   const [question, setQuestion] = React.useState<string | undefined>();
   const [sessionId, setSessionId] = React.useState<number | undefined>();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [messages, setMessages] = React.useState<sessionMessageResponse[]>([]);
-  const fabRef = React.useRef<HTMLButtonElement>(null);
 
   const handleStartChat = async () => {
+    if (showChat) return;
     setLoading(true);
     setShowChat(true);
     const response = await createSession({
@@ -45,6 +46,7 @@ export const Widget: React.FC<Props> = ({ widgetId = 43 }) => {
   };
 
   const handleEndChat = async () => {
+    if (!showChat) return;
     setShowChat(false);
     setMessages([]);
     if (sessionId)
@@ -79,20 +81,6 @@ export const Widget: React.FC<Props> = ({ widgetId = 43 }) => {
     setLoading(false);
   };
 
-  React.useEffect(() => {
-    const handleOutsideClick = (event: any) => {
-      if (fabRef.current && !fabRef.current.contains(event.target)) {
-        handleEndChat();
-      }
-    };
-
-    document.addEventListener('mousedown', handleOutsideClick);
-
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, []);
-
   return (
     <>
       <S.WidgetIconBox>
@@ -101,18 +89,13 @@ export const Widget: React.FC<Props> = ({ widgetId = 43 }) => {
         </Fab>
       </S.WidgetIconBox>
       {showChat && (
-        <S.ChatBox ref={fabRef}>
+        <S.ChatBox>
           <S.ChatHeader>
             <p style={{ fontSize: '16px' }}>Suporte Automatizado</p>
             <p style={{ fontSize: '10px' }}>Escreva suas dúvidas</p>
           </S.ChatHeader>
           <S.ChatContent>
-            {messages.map((message) => {
-              if (message.isUser) {
-                return <S.UserMessage key={message.id}>{message.text}</S.UserMessage>;
-              } else
-                return <S.AutomaticMessage key={message.id}>{message.text}</S.AutomaticMessage>;
-            })}
+            <Messages messageWidth="224px" messages={messages} />
             {loading && <Loading />}
           </S.ChatContent>
           <S.ChatFooter>
