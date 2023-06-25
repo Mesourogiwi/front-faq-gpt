@@ -5,7 +5,11 @@ export const Container = styled(Box)<BoxProps>(() => ({
   paddingTop: '52px',
 }));
 
-export const RightContainer = styled(Box)<BoxProps>(() => ({
+export const ImageContainer = styled(Box)<BoxProps>(() => ({
   display: 'flex',
-  padding: '16px',
+  width: '100vw',
+  height: 'calc(100vh - 52px)',
+  justifyContent: 'center',
+  alignItems: 'center',
+  paddingBottom: '52px',
 }));

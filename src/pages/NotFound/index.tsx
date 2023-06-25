@@ -3,6 +3,7 @@ import { Header, CustomButton, Footer } from '../../components';
 
 import { useNavigate } from 'react-router-dom';
 import * as S from './styles';
+import CentralImage404 from './components/CentralImage';
 
 //para chegar nessa tela utilize: http://localhost:5173/admin/[nome da tela]
 //exemplo: http://localhost:5173/admin/home
@@ -21,10 +22,9 @@ export default function NotFound() {
       />
 
       <S.Container>
-        <S.RightContainer>
-          <h1> 404 Not Found</h1>
-          {/* Coloque o contudo da página aqui */}
-        </S.RightContainer>
+        <S.ImageContainer>
+          <CentralImage404 />
+        </S.ImageContainer>
         <Footer />
       </S.Container>
     </>
