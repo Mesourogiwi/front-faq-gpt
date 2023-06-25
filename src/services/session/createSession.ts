@@ -4,7 +4,7 @@ import { sessionResponse } from '../../types';
 export type createSessionData = {
   widgetId: number;
   startDate: string;
-  endDate: string;
+  endDate?: string;
 };
 
 export const createSession = async ({ widgetId, startDate, endDate }: createSessionData) => {
