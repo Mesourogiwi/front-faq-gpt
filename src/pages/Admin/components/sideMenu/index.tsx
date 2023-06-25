@@ -27,11 +27,13 @@ export default function SideMenu() {
   const lastUrl = urlSplited[urlSplited.length - 1].toLowerCase();
 
   const handleOption = (option: string) => {
+    if (option === 'Control') return navigate(`/404`);
+
     const newOptionsList = optionsList;
 
     //atualizar o newOptionsList com o valor de selected = true parao option do parametro
     newOptionsList?.map((optionItem) => {
-      if (optionItem?.name.toLowerCase() === option) {
+      if (optionItem?.name.toLowerCase() === option.toLowerCase()) {
         optionItem.selected = true;
       } else {
         if (optionItem) optionItem.selected = false;
@@ -48,6 +50,9 @@ export default function SideMenu() {
 
   if (selectedOption?.name.toLowerCase() !== lastUrl.toLowerCase()) {
     console.log('a');
+    console.log('optionsList', optionsList);
+    console.log('selectedOption?.name.toLowerCase()', selectedOption?.name.toLowerCase());
+    console.log('lastUrl.toLowerCase()', lastUrl.toLowerCase());
     if (lastUrl !== 'user' || selectedOption?.name !== 'Settings') handleOption(lastUrl);
   }
 
