@@ -1,4 +1,4 @@
-import { RouteObject } from 'react-router-dom';
+import { RouteObject, Navigate } from 'react-router-dom';
 
 import { Users } from '../api/Users/get';
 import { Login } from '../api/Users/login';
@@ -32,6 +32,7 @@ import Home from '../pages/Admin/Home';
 import User from '../pages/Admin/User';
 import DataSources from '../pages/Admin/DataSources';
 import Sessions from '../pages/Admin/Sessions';
+import NotFound from '../pages/NotFound';
 
 const userRoutes: RouteObject[] = [
   {
@@ -177,5 +178,13 @@ export const apiRoutes = [
   {
     path: '/api',
     element: <Api />,
+  },
+  {
+    path: '/404',
+    element: <NotFound />,
+  },
+  {
+    path: '*',
+    element: <Navigate to="/404" />,
   },
 ];
