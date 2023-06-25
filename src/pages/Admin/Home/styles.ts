@@ -57,7 +57,6 @@ export const InfosContainer = styled(Box)<BoxProps>(() => ({
   borderRadius: '32px',
   width: '100%',
   maxWidth: '600px',
-  height: '100%',
   padding: '16px',
 }));
 
@@ -68,17 +67,13 @@ export const CreateContainer = styled(Box)<BoxProps>(() => ({
   borderRadius: '32px',
   width: '100%',
   maxWidth: '600px',
-  height: '100%',
   padding: '16px',
 }));
 
 export const ResponseStatusContainer = styled(Box)<BoxProps>(() => ({
   display: 'flex',
-  border: '2px solid #000',
-  borderRadius: '32px',
   width: '100%',
   maxWidth: '600px',
-  height: '200px',
   padding: '16px',
 }));
 
