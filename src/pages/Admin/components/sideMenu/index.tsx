@@ -24,30 +24,31 @@ export default function SideMenu() {
   //pega do url a ultima parte (depois do ultimo / ) e salva em uma variavel
   const url = window.location.pathname;
   const urlSplited = url.split('/');
-  const lastUrl = urlSplited[urlSplited.length - 1];
+  const lastUrl = urlSplited[urlSplited.length - 1].toLowerCase();
 
   const handleOption = (option: string) => {
     const newOptionsList = optionsList;
 
     //atualizar o newOptionsList com o valor de selected = true parao option do parametro
     newOptionsList?.map((optionItem) => {
-      if (optionItem?.name === option) {
+      if (optionItem?.name.toLowerCase() === option) {
         optionItem.selected = true;
       } else {
         if (optionItem) optionItem.selected = false;
       }
 
-      if (optionItem.name === 'Settings' && option === 'User') {
+      if (optionItem.name === 'Settings' && option === 'user') {
         optionItem.selected = true;
       }
     });
     //setta o newOptionsList no atom
     setOptionsList(newOptionsList as Option[]);
-    navigate(`/admin/${option}`);
+    navigate(`/admin/${option.toLowerCase()}`);
   };
 
-  if (selectedOption?.name !== lastUrl) {
-    if (lastUrl !== 'User' || selectedOption?.name === 'Control') handleOption(lastUrl);
+  if (selectedOption?.name.toLowerCase() !== lastUrl.toLowerCase()) {
+    console.log('a');
+    if (lastUrl !== 'user' || selectedOption?.name !== 'Settings') handleOption(lastUrl);
   }
 
   return (
@@ -66,7 +67,7 @@ export default function SideMenu() {
 
         <S.Option
           selected={settings?.selected}
-          onClick={() => handleOption('User')}
+          onClick={() => handleOption('user')}
           sx={{ marginBottom: '45px' }}>
           <h2>Settings</h2>
         </S.Option>

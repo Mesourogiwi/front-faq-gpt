@@ -4,11 +4,17 @@ import { Header, CustomButton, Footer } from '../../../components';
 import { useNavigate } from 'react-router-dom';
 import SideMenu from './../components/sideMenu';
 import * as S from './styles';
+import { useRecoilValue } from 'recoil';
+import { currentUserState } from '../../../state/user';
 
 //para chegar nessa tela utilize: http://localhost:5173/admin/[nome da tela]
 //exemplo: http://localhost:5173/admin/home
 export default function Home() {
   const navigate = useNavigate();
+  // const currentUser = useRecoilValue(currentUserState);
+
+  // console.log(`currentUser`);
+  // if (!currentUser) navigate('/sign-up');
 
   return (
     <>
