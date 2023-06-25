@@ -6,12 +6,14 @@ import { Header, CustomButton, Footer } from '../../../components';
 
 import SideMenu from './../components/sideMenu';
 import { currentUserState } from '../../../state/user';
-import { getWidgets, updateWidget } from '../../../services/widgets';
+import { createWidget, deleteWidget, getWidgets, updateWidget } from '../../../services/widgets';
 import { Widget } from '../../../components/Widget';
 
 import * as S from './styles';
 import { useEffect, useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
+import { Widgets } from '../../../api/Widgets';
+import { PALETTE } from '../../../config/palette';
 
 //para chegar nessa tela utilize: http://localhost:5173/admin/[nome da tela]
 //exemplo: http://localhost:5173/admin/home
@@ -22,6 +24,13 @@ export default function Home() {
   const [newName, setNewName] = useState<string>();
   const [createWidgetName, setCreateWidgetName] = useState<string>();
   const [widgets, setWidgets] = useState<any[]>([]);
+  const [responseStatus, setResponseStatus] = useState<{
+    action: string;
+    name: string;
+  }>(null);
+
+  const today = new Date();
+  const currentDate = today.toLocaleDateString();
 
   const getWidgetId = async () => {
     const response = await getWidgets();
@@ -33,12 +42,34 @@ export default function Home() {
         setNewName(response[0].name);
       }
     }
+    return response;
   };
 
   const handleUpdateWidgetName = async (name: string) => {
     if (!currentUser) return;
     const response = await updateWidget(widgetSelected.id, { name: name, userId: currentUser.id });
     console.log(response);
+
+    const newList = await getWidgetId();
+    if (newList) setResponseStatus({ action: 'update', name: name });
+    console.log('a', responseStatus);
+  };
+
+  const handleCreateWidget = async (name: string) => {
+    if (!currentUser) return;
+    const response = await createWidget({ name: name, userId: currentUser.id });
+    console.log(response);
+
+    const newList = await getWidgetId();
+    if (newList) setResponseStatus({ action: 'create', name: name });
+    console.log('a', responseStatus);
+  };
+
+  const handleDeleteWidget = async () => {
+    if (!currentUser) return;
+
+    const response = await deleteWidget(widgetSelected.id);
+    if (response) setWidgetSelected(widgets[0]);
     getWidgetId();
   };
 
@@ -107,7 +138,7 @@ export default function Home() {
                   </Typography>
                 </Box>
                 <Typography variant="h5" fontWeight={700}>
-                  Update name:
+                  New widget name:
                 </Typography>
                 <S.InputText
                   disableUnderline={true}
@@ -122,7 +153,13 @@ export default function Home() {
                       ? handleUpdateWidgetName(newName)
                       : console.log('Nome não pode ser vazio');
                   }}>
-                  Update
+                  <b>Update</b>
+                </S.WidgetButton>
+                <S.WidgetButton
+                  onClick={() => {
+                    handleDeleteWidget();
+                  }}>
+                  <b>Delete Widget</b>
                 </S.WidgetButton>
               </S.InfosContainer>
 
@@ -134,20 +171,29 @@ export default function Home() {
                   disableUnderline={true}
                   value={createWidgetName}
                   onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    setNewName(event.target.value);
+                    setCreateWidgetName(event.target.value);
                   }}
                 />
                 <S.WidgetButton
                   onClick={() => {
                     createWidgetName
-                      ? handleUpdateWidgetName(createWidgetName)
+                      ? handleCreateWidget(createWidgetName)
                       : console.log('Nome não pode ser vazio');
                   }}>
-                  Create
+                  <b>Create</b>
                 </S.WidgetButton>
               </S.CreateContainer>
 
-              <S.ResponseStatusContainer></S.ResponseStatusContainer>
+              <S.ResponseStatusContainer>
+                {responseStatus && (
+                  <Typography variant="h5" fontWeight={700} color={PALETTE.secondary}>
+                    Success, Widget {responseStatus?.action}!
+                    <br />
+                    Widget {responseStatus?.action} at {currentDate} and your name is{' '}
+                    {responseStatus?.name}.
+                  </Typography>
+                )}
+              </S.ResponseStatusContainer>
             </S.ActionContainer>
           </S.WidgetContainer>
 
