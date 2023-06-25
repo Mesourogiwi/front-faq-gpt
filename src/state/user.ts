@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
-import { loginResponse } from '../types';
+import { loginResponse, userResponse } from '../types';
 
-export const currentUserState = atom<loginResponse | undefined>({
+export const currentUserState = atom<userResponse | undefined>({
   key: 'current-user',
   default: undefined,
 });
