@@ -6,7 +6,6 @@ import landingPageImg from '../../assets/landing.png';
 import { CustomButton, Footer, Header } from '../../components';
 import { LandingPageContainer } from './LandingPageContainer';
 import { Card } from './Card';
-import { Widget } from '../../components/Widget';
 
 export const LandingPage: React.FC = () => {
   const navigate = useNavigate();
@@ -23,7 +22,6 @@ export const LandingPage: React.FC = () => {
         }
       />
       <div style={{ height: '100vh', padding: '100px 0' }}>
-        <Widget />
         <LandingPageContainer
           text="The ready for use widget to any dataset*, to create a human-like chat 24/7/365
           integrated in your website."
