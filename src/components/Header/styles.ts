@@ -1,4 +1,4 @@
-import { Box, BoxProps, styled } from "@mui/material";
+import { Box, BoxProps, styled } from '@mui/material';
 import { PALETTE } from '../../config/palette';
 
 export const HeaderContainer = styled(Box)<BoxProps>(() => ({
@@ -15,8 +15,8 @@ export const HeaderContainer = styled(Box)<BoxProps>(() => ({
 }));
 
 export const LoggedUser = styled(Box)<BoxProps>(() => ({
-  alignItems: 'center',
+  alignItems: 'baseline',
   display: 'flex',
-  gap: '8px',
+  gap: '16px',
   marginBottom: '6px',
 }));

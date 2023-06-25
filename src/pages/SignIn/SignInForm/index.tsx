@@ -1,4 +1,3 @@
-import { TextField } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
@@ -7,6 +6,8 @@ import { PALETTE } from '../../../config/palette';
 import { CustomButton } from '../../../components';
 import { login } from '../../../services/users';
 import { currentUserState } from '../../../state/user';
+
+import { Input } from '../../../components/Input';
 
 export const SignInForm: React.FC = () => {
   const [email, setEmail] = React.useState<string | undefined>();
@@ -36,33 +37,34 @@ export const SignInForm: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '16px 0' }}>
-      <TextField
+      <Input
         fullWidth
-        label="Email"
-        variant="outlined"
+        disableUnderline={true}
+        placeholder="Email"
         value={email}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           setErrorMessage('');
           setEmail(event.target.value);
         }}
       />
-      <TextField
+      <Input
         fullWidth
+        disableUnderline={true}
         type="password"
-        label="Password"
-        variant="outlined"
+        placeholder="Password"
         value={password}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           setErrorMessage('');
           setPassword(event.target.value);
         }}
-        helperText={errorMessage}
       />
       <div
         style={{
           fontSize: '14px',
-          textAlign: 'end',
+          display: 'flex',
+          justifyContent: errorMessage ? 'space-between' : 'flex-end',
         }}>
+        {errorMessage && <p>{errorMessage}</p>}
         <button
           onClick={() => navigate('/reset-password')}
           style={{
