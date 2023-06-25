@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import SideMenu from './../components/sideMenu';
 import * as S from './styles';
 import SessionList from './SessionList';
+import SessionView from './SessionView';
 
 //para chegar nessa tela utilize: http://localhost:5173/admin/sessions
 export default function Sessions() {
@@ -24,10 +25,9 @@ export default function Sessions() {
       <S.Container>
         <SideMenu />
         <S.RightContainer>
-          <div>
-            <h1> Sessions</h1>
-          <SessionList />
-          </div>
+        <h1 style={{ position: 'absolute' }}> Sessions</h1>
+        <SessionList />
+        <SessionView />
         </S.RightContainer>
         <Footer />
       </S.Container>

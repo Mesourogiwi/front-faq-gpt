@@ -1,29 +1,37 @@
-import React, { useState } from 'react';
-import axiosInstance from '../../../../config/axios';
-import { sessionMessageResponse } from '../../../../types';
+import React from 'react';
+import { sessionResponse } from '../../../../types/session';
 
+type SessionViewProps = {
+  sessionId: number;
+  sessions: sessionResponse[];
+};
 
-const SessionView = (props : any) => {
-  const [sessionMessages, setSessionMessages] = React.useState<sessionMessageResponse[]>([]);
-
-  const fetchData = async () => {
-    setSessionMessages(props.data);
-  };
-
-  fetchData();
+const SessionView: React.FC<SessionViewProps> = ({ sessionId, sessions }) => {
+  // Filtrar a sessão com base no ID selecionado
+  const session = sessions.find((session) => session.id === sessionId);
 
   return (
-    <div>
-        {sessionMessages.map((message) => {
-          return ( 
-            <div style={{ marginTop: '10px', display: 'flex', borderBottom: '2px solid #939393', paddingBottom: '8px', fontSize: '18px' }}>
-              <span style={{ width: '16px' }} />
-              <span>#{message.id}</span>
-              <span style={{ width: '8px' }} />
-              <span>#{message.text}</span>
+    <div style={{ display: 'flex', float: 'right' }}>
+      <h2>#{session?.id}</h2>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+        {/* Exibir as sessionMessages da sessão selecionada */}
+        {session?.sessionMessages
+          .sort((a, b) => a.id - b.id) // Ordenar as mensagens por ID em ordem crescente
+          .map((message) => (
+            <div
+              key={message.id}
+              style={{
+                backgroundColor: '#e9e9e9',
+                borderRadius: '8px',
+                padding: '8px',
+                marginBottom: '8px',
+                maxWidth: '70%',
+              }}
+            >
+              <p>{message.text}</p>
             </div>
-          );
-        })}
+          ))}
+      </div>
     </div>
   );
 };
