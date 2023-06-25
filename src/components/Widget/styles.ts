@@ -17,6 +17,7 @@ export const ChatBox = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   boxShadow: '0 4px 4px rgba(37, 37, 37, 0.5)',
+  zIndex: 10,
 }));
 
 export const ChatHeader = styled(Box)(() => ({

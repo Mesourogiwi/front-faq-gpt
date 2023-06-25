@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
-import { Header, CustomButton, Footer } from '../../../components';
+import { Header, Footer } from '../../../components';
 
 import SideMenu from './../components/sideMenu';
 import { currentUserState } from '../../../state/user';
@@ -78,15 +78,7 @@ export default function Home() {
 
   return (
     <>
-      <Header
-        rightElement={
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <CustomButton onClick={() => navigate('/sign-up')} variant="text" text="Sign Up" />
-            <CustomButton onClick={() => navigate('/sign-in')} variant="outlined" text="Sign In" />
-          </div>
-        }
-      />
-
+      <Header />
       <S.Container>
         <SideMenu />
         <S.RightContainer>

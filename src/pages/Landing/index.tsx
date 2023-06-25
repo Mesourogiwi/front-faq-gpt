@@ -16,7 +16,7 @@ export const LandingPage: React.FC = () => {
       <Header
         rightElement={
           <div style={{ display: 'flex', gap: '16px' }}>
-            <CustomButton onClick={() => navigate('/sign-up')} variant="text" text="Sign Up aaa" />
+            <CustomButton onClick={() => navigate('/sign-up')} variant="text" text="Sign Up" />
             <CustomButton onClick={() => navigate('/sign-in')} variant="outlined" text="Sign In" />
           </div>
         }

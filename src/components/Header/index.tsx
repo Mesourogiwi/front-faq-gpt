@@ -5,7 +5,6 @@ import { useRecoilValue, useResetRecoilState } from 'recoil';
 import { currentUserState } from '../../state/user';
 import { CustomButton } from '../CustomButton';
 import * as S from './styles';
-import { Box } from '@mui/material';
 
 type Props = {
   rightElement?: JSX.Element;

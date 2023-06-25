@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button as MUIButton } from '@mui/material';
+import { Button } from './styles';
 
 type ButtonProps = {
   text: string;
@@ -17,8 +17,13 @@ export const CustomButton: React.FC<ButtonProps> = ({
   dark = false,
 }) => {
   return (
-    <MUIButton size={size} variant={variant} color={dark ? 'primary' : 'info'} onClick={onClick}>
+    <Button
+      size={size}
+      variant={variant}
+      color={dark ? 'primary' : 'info'}
+      style={{ border: `2px solid ${dark ? 'info' : 'primary'}` }}
+      onClick={onClick}>
       {text}
-    </MUIButton>
+    </Button>
   );
 };

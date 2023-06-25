@@ -1,9 +1,9 @@
-import { TextField } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { CustomButton } from '../../../components';
 import { createUser } from '../../../services/users';
+import { Input } from '../../../components/Input';
 
 export const SignUpForm: React.FC = () => {
   const [name, setName] = React.useState<string | undefined>();
@@ -39,49 +39,49 @@ export const SignUpForm: React.FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '16px 0' }}>
-      <TextField
+      <Input
         fullWidth
-        label="Name"
-        variant="outlined"
+        disableUnderline={true}
+        placeholder="Name"
         value={name}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           setErrorMessage('');
           setName(event.target.value);
         }}
       />
-      <TextField
+      <Input
         fullWidth
-        label="Email"
-        variant="outlined"
+        disableUnderline={true}
+        placeholder="Email"
         value={email}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           setErrorMessage('');
           setEmail(event.target.value);
         }}
       />
-      <TextField
+      <Input
         fullWidth
+        disableUnderline={true}
         type="password"
-        label="Password"
-        variant="outlined"
+        placeholder="Password"
         value={password}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           setErrorMessage('');
           setPassword(event.target.value);
         }}
       />
-      <TextField
+      <Input
         fullWidth
+        disableUnderline={true}
         type="password"
-        label="Confirm Password"
-        variant="outlined"
+        placeholder="Confirm Password"
         value={passwordConfirm}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           setErrorMessage('');
           setPasswordConfirm(event.target.value);
         }}
-        helperText={errorMessage}
       />
+      {errorMessage && <p style={{ fontSize: '14px' }}>{errorMessage}</p>}
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <CustomButton
           dark

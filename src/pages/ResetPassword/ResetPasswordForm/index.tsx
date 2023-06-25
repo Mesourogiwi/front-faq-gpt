@@ -1,4 +1,3 @@
-import { TextField } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,6 +5,7 @@ import { CustomButton } from '../../../components';
 import { getUserByLogin, updateUser } from '../../../services/users';
 import { getRandomToken } from '../../../utils/getRandomToken';
 import { userResponse } from '../../../types';
+import { Input } from '../../../components/Input';
 
 export const ResetPasswordForm: React.FC = () => {
   const [email, setEmail] = React.useState<string | undefined>();
@@ -85,54 +85,54 @@ export const ResetPasswordForm: React.FC = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '16px 0' }}>
       {!creatingNewPassword ? (
         <>
-          <TextField
+          <Input
             fullWidth
-            label="Email"
-            variant="outlined"
+            disableUnderline={true}
+            placeholder="Email"
             value={email}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setErrorMessageEmail('');
               setEmail(event.target.value);
             }}
-            helperText={errorMessageEmail}
           />
+          {errorMessageEmail && <p style={{ fontSize: '14px' }}>{errorMessageEmail}</p>}
           <CustomButton dark variant="outlined" text="Send a token" onClick={sendToken} />
-          <TextField
+          <Input
+            disableUnderline={true}
             fullWidth
-            label="Valid token"
-            variant="outlined"
+            placeholder="Valid token"
             value={token}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setToken(event.target.value);
             }}
-            helperText={errorMessageToken}
           />
+          {errorMessageToken && <p style={{ fontSize: '14px' }}>{errorMessageToken}</p>}
         </>
       ) : (
         <>
-          <TextField
+          <Input
             fullWidth
+            disableUnderline={true}
             type="password"
-            label="Password"
-            variant="outlined"
+            placeholder="Password"
             value={password}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setErrorMessagePassword('');
               setPassword(event.target.value);
             }}
           />
-          <TextField
+          <Input
             fullWidth
+            disableUnderline={true}
             type="password"
-            label="Confirm Password"
-            variant="outlined"
+            placeholder="Confirm Password"
             value={passwordConfirm}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setErrorMessagePassword('');
               setPasswordConfirm(event.target.value);
             }}
-            helperText={errorMessagePassword}
           />
+          {errorMessagePassword && <p style={{ fontSize: '14px' }}>{errorMessagePassword}</p>}
         </>
       )}
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
