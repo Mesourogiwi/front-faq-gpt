@@ -1,5 +1,7 @@
 import React from 'react';
 import { sessionResponse } from '../../../../types/session';
+import CircleIcon from '@mui/icons-material/Circle';
+import { Messages } from '../../../../components/Messages';
 
 type SessionViewProps = {
   sessionId: number;
@@ -7,30 +9,36 @@ type SessionViewProps = {
 };
 
 const SessionView: React.FC<SessionViewProps> = ({ sessionId, sessions }) => {
-  // Filtrar a sessão com base no ID selecionado
-  const session = sessions.find((session) => session.id === sessionId);
+  const session = sessions.find((session) => session?.id === sessionId);
+
+  var inactive = (endDate : any) => {
+    var current = new Date();
+
+    return current > (new Date(endDate));
+  }
 
   return (
-    <div style={{ display: 'flex', float: 'right' }}>
-      <h2>#{session?.id}</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-        {/* Exibir as sessionMessages da sessão selecionada */}
-        {session?.sessionMessages
-          .sort((a, b) => a.id - b.id) // Ordenar as mensagens por ID em ordem crescente
-          .map((message) => (
-            <div
-              key={message.id}
-              style={{
-                backgroundColor: '#e9e9e9',
-                borderRadius: '8px',
-                padding: '8px',
-                marginBottom: '8px',
-                maxWidth: '70%',
-              }}
-            >
-              <p>{message.text}</p>
-            </div>
-          ))}
+    <div>
+      <div style={{borderBottom: '2px solid #939393',
+                  paddingBottom: '6px',
+                  fontSize: '18px',
+                  width: '60vw'}}
+      >
+        <h3>
+            #{session?.id} -
+          <span style={{ width: '8px', display: 'inline-block' }} />
+          <span>
+            <CircleIcon color={inactive(session?.endDate) ? 'error' : 'success'} fontSize="small" />
+          </span>
+          <span style={{ width: '4px', display: 'inline-block' }} />
+          <span>
+            {inactive(session?.endDate) ? 'Inactive' : 'Active'}
+          </span>
+        </h3>
+      </div>
+      
+      <div style={{ marginTop: '10px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+          <Messages messageWidth="224px" messages={session?.sessionMessages} />
       </div>
     </div>
   );

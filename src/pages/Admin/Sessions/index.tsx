@@ -1,16 +1,13 @@
-import * as React from 'react';
 import { Header, CustomButton, Footer } from '../../../components';
 
 import { useNavigate } from 'react-router-dom';
 import SideMenu from './../components/sideMenu';
 import * as S from './styles';
 import SessionList from './SessionList';
-import SessionView from './SessionView';
-
 //para chegar nessa tela utilize: http://localhost:5173/admin/sessions
 export default function Sessions() {
   const navigate = useNavigate();
-
+  
   return (
     <>
       <Header
@@ -24,11 +21,7 @@ export default function Sessions() {
 
       <S.Container>
         <SideMenu />
-        <S.RightContainer>
-        <h1 style={{ position: 'absolute' }}> Sessions</h1>
-        <SessionList />
-        <SessionView />
-        </S.RightContainer>
+        <SessionList  />
         <Footer />
       </S.Container>
     </>

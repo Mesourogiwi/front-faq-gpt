@@ -9,3 +9,9 @@ export const RightContainer = styled(Box)<BoxProps>(() => ({
   display: 'flex',
   padding: '16px',
 }));
+
+export const SessionList = styled(Box)<BoxProps>(() => ({
+  display: 'flex',
+  padding: '16px',
+  width: '100%'
+}));
