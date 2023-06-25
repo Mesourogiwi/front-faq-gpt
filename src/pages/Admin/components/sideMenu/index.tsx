@@ -47,7 +47,7 @@ export default function SideMenu() {
   };
 
   if (selectedOption?.name !== lastUrl) {
-    if (!(selectedOption?.name === 'Settings' && lastUrl === 'User')) handleOption(lastUrl);
+    if (lastUrl !== 'User' || selectedOption?.name === 'Control') handleOption(lastUrl);
   }
 
   return (
