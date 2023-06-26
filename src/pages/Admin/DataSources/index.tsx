@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Header, CustomButton, Footer, Container } from '../../../components';
-import { getSources } from '../../../services/sources';
+import { createSource, getSources } from '../../../services/sources';
 
 import { useNavigate } from 'react-router-dom';
 import SideMenu from './../components/sideMenu';
@@ -12,6 +12,7 @@ import { currentUserState } from '../../../state/user';
 import { useAtom } from 'jotai';
 import { currentWidgetAtom } from '../atom';
 import { getWidgetSources } from '../../../services/widgets';
+import { Typography } from '@mui/material';
 
 type sourceObject = {
   id: number;
@@ -22,6 +23,8 @@ export default function DataSources() {
   const navigate = useNavigate();
   const [sources, setSources] = useState<sourceResponse[] | null>(null);
   const [selectedSource, setSelectedSource] = useState<sourceObject | null>(null);
+  const [createSourceName, setCreateSourceName] = useState<string>();
+
   const [currentWidget] = useAtom(currentWidgetAtom);
 
   const currentUser = useRecoilValue(currentUserState);
@@ -35,6 +38,17 @@ export default function DataSources() {
 
     if (response) {
       setSources(response);
+    }
+  };
+
+  const handleCreateSource = async (name: string) => {
+    if (!currentUser) return;
+    const response = await createSource({ widgetId: currentWidget.id, channel: name });
+    // console.log(response);
+
+    if (response) {
+      getSourcesOfWidget();
+      console.log(' Source criado com sucesso', response);
     }
   };
 
@@ -94,6 +108,27 @@ export default function DataSources() {
                   <b>Tipo de autenticação: </b>
                   <span> Chave de autenticação</span>
                 </div>
+
+                {/* <Container> */}
+                <Typography variant="h5" fontWeight={700}>
+                  Create source:
+                </Typography>
+                <S.InputText
+                  disableUnderline={true}
+                  value={createSourceName}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    setCreateSourceName(event.target.value);
+                  }}
+                />
+                <S.SourceButton
+                  onClick={() => {
+                    createSourceName
+                      ? handleCreateSource(createSourceName)
+                      : console.log('Nome não pode ser vazio');
+                  }}>
+                  <b>Create</b>
+                </S.SourceButton>
+                {/* </Container> */}
               </div>
             </Container>
           </div>
