@@ -4,21 +4,26 @@ import CircleIcon from '@mui/icons-material/Circle';
 import { sessionResponse } from '../../../../types/session';
 import SessionView from '../SessionView';
 import * as S from './../styles';
+import { getWidgetSessions } from '../../../../services/widgets/getWidgetSessions';
+import { useAtom } from 'jotai';
+import { currentWidgetAtom } from '../../atom';
+import { get } from 'http';
 
 const SessionList = () => {
   const [sessions, setSessions] = React.useState<sessionResponse[]>([]);
   const [selectedSessionId, setSelectedSessionId] = useState(0);
+  const [currentWidget] = useAtom(currentWidgetAtom);
+
+  const getSessionsOfWidget = async () => {
+    const response = await getWidgetSessions(currentWidget.id);
+
+    if (response) {
+      setSessions(response);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axiosInstance({
-        url: `/sessions/`,
-        method: 'GET',
-      });
-      setSessions(response.data);
-    };
-
-    fetchData();
+    getSessionsOfWidget();
   }, []);
 
   const handleSessionClick = (sessionId: number) => {
