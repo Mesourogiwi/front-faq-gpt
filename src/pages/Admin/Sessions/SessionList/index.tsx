@@ -32,10 +32,10 @@ const SessionList = () => {
   }
 
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
       <S.RightContainer>
-        <h1 style={{ position: 'absolute' }}> Sessions</h1>
-        <div style={{marginTop: '50px'}}>
+        <div style={{ }}>
+          <h1 style={{  }}> Sessions</h1>
           {sessions.map((session) => (
             <div key={session.id} onClick={() => handleSessionClick(session.id)} style={{ display: 'flex', borderBottom: '2px solid #939393',
             paddingBottom: '6px' }}>
@@ -61,7 +61,7 @@ const SessionList = () => {
           ))}
         </div>
         </S.RightContainer>
-        <S.RightContainer style={{position: 'absolute', top: '60px', left: '440px'}}>
+        <S.RightContainer style={{  }}>
         <div>
             {selectedSessionId !== 0 && (
               <SessionView sessionId={selectedSessionId} sessions={sessions} />

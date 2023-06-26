@@ -28,7 +28,7 @@ export const SignUpForm: React.FC = () => {
     if (response) {
       navigate('/sign-in');
     } else {
-      setErrorMessage('Something went wront, try again!');
+      setErrorMessage('Something went wrong, try again!');
     }
 
     setName('');
