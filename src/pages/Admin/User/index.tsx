@@ -58,7 +58,7 @@ export default function User() {
                     dark
                     size="small"
                     variant="outlined"
-                    text="Charge Password"
+                    text="Change Password"
                     onClick={() => {
                       navigate('/reset-password');
                     }}

@@ -182,9 +182,9 @@ export default function Home() {
               <S.ResponseStatusContainer>
                 {responseStatus && (
                   <Typography variant="h5" fontWeight={700} color={PALETTE.secondary}>
-                    Success, Widget {responseStatus?.action}!
+                    Success, Widget {responseStatus?.action}d!
                     <br />
-                    Widget {responseStatus?.action} at {currentDate} and your name is{' '}
+                    Widget {responseStatus?.action}d at {currentDate} and the name is{' '}
                     {responseStatus?.name}.
                   </Typography>
                 )}

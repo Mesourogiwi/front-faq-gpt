@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Header, CustomButton, Footer, Container } from '../../../components';
-import { createSource, getSources } from '../../../services/sources';
+import { createSource, deleteSource, getSources, updateSource } from '../../../services/sources';
 
 import { useNavigate } from 'react-router-dom';
 import SideMenu from './../components/sideMenu';
@@ -13,6 +13,7 @@ import { useAtom } from 'jotai';
 import { currentWidgetAtom } from '../atom';
 import { getWidgetSources } from '../../../services/widgets';
 import { Typography } from '@mui/material';
+import { PALETTE } from '../../../config/palette';
 
 type sourceObject = {
   id: number;
@@ -24,6 +25,11 @@ export default function DataSources() {
   const [sources, setSources] = useState<sourceResponse[] | null>(null);
   const [selectedSource, setSelectedSource] = useState<sourceObject | null>(null);
   const [createSourceName, setCreateSourceName] = useState<string>();
+  const [updateSourceName, setUpdateSourceName] = useState<string>();
+  const [responseStatus, setResponseStatus] = useState<{
+    action: string;
+    name: string;
+  }>();
 
   const [currentWidget] = useAtom(currentWidgetAtom);
 
@@ -41,6 +47,22 @@ export default function DataSources() {
     }
   };
 
+  const handleUpdateSource = async (name: string) => {
+    if (!currentUser || !selectedSource) return;
+    const response = await updateSource(selectedSource.id, {
+      widgetId: currentWidget.id,
+      channel: name,
+    });
+    // console.log(response);
+
+    if (response) {
+      getSourcesOfWidget();
+      console.log(' Source atualizado com sucesso', response);
+      setResponseStatus({ action: 'update', name });
+    }
+    setUpdateSourceName('');
+  };
+
   const handleCreateSource = async (name: string) => {
     if (!currentUser) return;
     const response = await createSource({ widgetId: currentWidget.id, channel: name });
@@ -49,6 +71,18 @@ export default function DataSources() {
     if (response) {
       getSourcesOfWidget();
       console.log(' Source criado com sucesso', response);
+      setResponseStatus({ action: 'create', name });
+    }
+    setCreateSourceName('');
+  };
+
+  const handleDeleteSource = async () => {
+    if (!selectedSource) return;
+
+    const response = await deleteSource(selectedSource.id);
+    if (response) {
+      getSourcesOfWidget();
+      setSelectedSource(null);
     }
   };
 
@@ -98,18 +132,46 @@ export default function DataSources() {
                 ))}
               </div>
             </Container>
-            <Container>
-              <div style={{ padding: 32, display: 'grid', gap: 12 }}>
-                <div>
-                  <b>Nome da conexão: </b>
-                  <span> {selectedSource?.channel ?? 'Selecione um source'}</span>
-                </div>
-                <div>
-                  <b>Tipo de autenticação: </b>
-                  <span> Chave de autenticação</span>
-                </div>
+            <S.ActionContainer>
+              <Container>
+                <div style={{ padding: 32, display: 'grid', gap: 12 }}>
+                  <div>
+                    <b>Nome da conexão: </b>
+                    <span> {selectedSource?.channel ?? 'Selecione um source'}</span>
+                  </div>
+                  <div>
+                    <b>Tipo de autenticação: </b>
+                    <span> Chave de autenticação</span>
+                  </div>
 
-                {/* <Container> */}
+                  {selectedSource && (
+                    <>
+                      <Typography variant="h5" fontWeight={700}>
+                        New source channel:
+                      </Typography>
+                      <S.InputText
+                        disableUnderline={true}
+                        value={updateSourceName}
+                        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                          setUpdateSourceName(event.target.value);
+                        }}
+                      />
+                      <S.SourceButton
+                        onClick={() => {
+                          updateSourceName
+                            ? handleUpdateSource(updateSourceName)
+                            : console.log('Nome não pode ser vazio');
+                        }}>
+                        <b>Update</b>
+                      </S.SourceButton>
+                      <S.SourceButton onClick={handleDeleteSource}>
+                        <b>Delete source</b>
+                      </S.SourceButton>
+                    </>
+                  )}
+                </div>
+              </Container>
+              <S.CreateContainer>
                 <Typography variant="h5" fontWeight={700}>
                   Create source:
                 </Typography>
@@ -128,9 +190,18 @@ export default function DataSources() {
                   }}>
                   <b>Create</b>
                 </S.SourceButton>
-                {/* </Container> */}
-              </div>
-            </Container>
+              </S.CreateContainer>
+              <S.ResponseStatusContainer>
+                {responseStatus && (
+                  <Typography variant="h5" fontWeight={700} color={PALETTE.secondary}>
+                    Success, data source {responseStatus?.action}d!
+                    <br />
+                    Data source {responseStatus?.action}d at {new Date().toLocaleDateString()} and
+                    the name is {responseStatus?.name}.
+                  </Typography>
+                )}
+              </S.ResponseStatusContainer>
+            </S.ActionContainer>
           </div>
         </S.RightContainer>
         <Footer />

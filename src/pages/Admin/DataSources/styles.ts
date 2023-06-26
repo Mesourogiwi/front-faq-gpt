@@ -27,3 +27,28 @@ export const InputText = styled(Input)<InputProps>(() => ({
   borderRadius: '16px',
   padding: '8px',
 }));
+
+export const ActionContainer = styled(Box)<BoxProps>(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  maxWidth: '600px',
+  gap: '16px',
+}));
+
+export const CreateContainer = styled(Box)<BoxProps>(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  border: '2px solid #000',
+  borderRadius: '32px',
+  width: '100%',
+  maxWidth: '600px',
+  padding: '16px',
+}));
+
+export const ResponseStatusContainer = styled(Box)<BoxProps>(() => ({
+  display: 'flex',
+  width: '100%',
+  maxWidth: '600px',
+  padding: '16px',
+}));
