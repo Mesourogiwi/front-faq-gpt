@@ -34,8 +34,8 @@ const SessionList = () => {
   return (
     <div style={{ display: 'flex' }}>
       <S.RightContainer>
-        <div style={{ }}>
-          <h1 style={{  }}> Sessions</h1>
+        <div>
+          <h1> Sessions</h1>
           {sessions.map((session) => (
             <div key={session.id} onClick={() => handleSessionClick(session.id)} style={{ display: 'flex', borderBottom: '2px solid #939393',
             paddingBottom: '6px' }}>
