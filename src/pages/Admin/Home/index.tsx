@@ -21,7 +21,6 @@ import { currentWidgetAtom } from '../atom';
 //exemplo: http://localhost:5173/admin/home
 export default function Home() {
   const navigate = useNavigate();
-  const currentUser = useRecoilValue(currentUserState);
   // const [widgetSelected, setCurrentWidget] = useState<any>();
 
   const [currentWidget, setCurrentWidget] = useAtom(currentWidgetAtom);
@@ -36,13 +35,19 @@ export default function Home() {
 
   const today = new Date();
   const currentDate = today.toLocaleDateString();
+  const currentUser = useRecoilValue(currentUserState);
+
+  useEffect(() => {
+    if (!currentUser) navigate('/sign-in');
+    getWidgetId();
+  }, []);
 
   const getWidgetId = async () => {
     const response = await getWidgets();
     // console.log(response);
     if (response) {
       setWidgets(response.sort((a, b) => a.id - b.id));
-      if (currentWidget === undefined) {
+      if (currentWidget.id === undefined) {
         setCurrentWidget(response[0]);
         setNewName(response[0].name);
       }
@@ -75,11 +80,6 @@ export default function Home() {
     if (response) setCurrentWidget(widgets[0]);
     getWidgetId();
   };
-
-  useEffect(() => {
-    if (!currentUser) navigate('/sign-in');
-    getWidgetId();
-  }, []);
 
   return (
     <>

@@ -25,11 +25,11 @@ const SessionList = () => {
     setSelectedSessionId(sessionId);
   };
 
-  var inactive = (endDate : string) => {
+  var inactive = (endDate: string) => {
     var current = new Date();
 
-    return current > (new Date(endDate));
-  }
+    return current > new Date(endDate);
+  };
 
   return (
     <div style={{ display: 'flex' }}>
@@ -37,21 +37,25 @@ const SessionList = () => {
         <div>
           <h1> Sessions</h1>
           {sessions.map((session) => (
-            <div key={session.id} onClick={() => handleSessionClick(session.id)} style={{ display: 'flex', borderBottom: '2px solid #939393',
-            paddingBottom: '6px' }}>
+            <div
+              key={session.id}
+              onClick={() => handleSessionClick(session.id)}
+              style={{ display: 'flex', borderBottom: '2px solid #939393', paddingBottom: '6px' }}>
               <div
                 style={{
                   marginTop: '10px',
                   display: 'flex',
                   fontSize: '18px',
                   cursor: 'pointer',
-                }}
-              >
+                }}>
                 <span style={{ width: '16px' }} />
                 <span>#{session.id}</span>
                 <span style={{ width: '8px' }} />
                 <span>
-                  <CircleIcon color={inactive(session.endDate) ? 'error' : 'success'} fontSize="small" />
+                  <CircleIcon
+                    color={inactive(session.endDate) ? 'error' : 'success'}
+                    fontSize="small"
+                  />
                 </span>
                 <span style={{ width: '8px' }} />
                 {inactive(session.endDate) ? 'Inactive' : 'Active'}
@@ -60,13 +64,13 @@ const SessionList = () => {
             </div>
           ))}
         </div>
-        </S.RightContainer>
-        <S.RightContainer style={{  }}>
+      </S.RightContainer>
+      <S.RightContainer style={{}}>
         <div>
-            {selectedSessionId !== 0 && (
-              <SessionView sessionId={selectedSessionId} sessions={sessions} />
-            )}
-          </div>
+          {selectedSessionId !== 0 && (
+            <SessionView sessionId={selectedSessionId} sessions={sessions} />
+          )}
+        </div>
       </S.RightContainer>
     </div>
   );

@@ -4,10 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import SideMenu from './../components/sideMenu';
 import * as S from './styles';
 import SessionList from './SessionList';
+import { useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
+import { currentUserState } from '../../../state/user';
 //para chegar nessa tela utilize: http://localhost:5173/admin/sessions
 export default function Sessions() {
   const navigate = useNavigate();
-  
+  const currentUser = useRecoilValue(currentUserState);
+
+  useEffect(() => {
+    if (!currentUser) navigate('/sign-in');
+  }, []);
+
   return (
     <>
       <Header
@@ -21,7 +29,7 @@ export default function Sessions() {
 
       <S.Container>
         <SideMenu />
-        <SessionList  />
+        <SessionList />
         <Footer />
       </S.Container>
     </>
