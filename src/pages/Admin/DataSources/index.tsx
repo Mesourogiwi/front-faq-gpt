@@ -9,6 +9,9 @@ import { sourceResponse } from '../../../types';
 import CircleIcon from '@mui/icons-material/Circle';
 import { useRecoilValue } from 'recoil';
 import { currentUserState } from '../../../state/user';
+import { useAtom } from 'jotai';
+import { currentWidgetAtom } from '../atom';
+import { getWidgetSources } from '../../../services/widgets';
 
 type sourceObject = {
   id: number;
@@ -19,6 +22,7 @@ export default function DataSources() {
   const navigate = useNavigate();
   const [sources, setSources] = useState<sourceResponse[] | null>(null);
   const [selectedSource, setSelectedSource] = useState<sourceObject | null>(null);
+  const [currentWidget] = useAtom(currentWidgetAtom);
 
   const currentUser = useRecoilValue(currentUserState);
 
@@ -26,8 +30,8 @@ export default function DataSources() {
     if (!currentUser) navigate('/sign-in');
   }, []);
 
-  const getAllSources = async () => {
-    const response = await getSources();
+  const getSourcesOfWidget = async () => {
+    const response = await getWidgetSources(currentWidget.id);
 
     if (response) {
       setSources(response);
@@ -35,7 +39,7 @@ export default function DataSources() {
   };
 
   useEffect(() => {
-    getAllSources();
+    getSourcesOfWidget();
   }, []);
 
   return (
