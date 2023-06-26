@@ -1,5 +1,5 @@
 import { atom } from 'jotai';
-import { Option } from './types';
+import { Option, WidgetType } from './types';
 
 const inital_options = [
   {
@@ -25,3 +25,5 @@ const inital_options = [
 ];
 
 export const options = atom<Option[]>(inital_options);
+
+export const currentWidgetAtom = atom<WidgetType>({} as WidgetType);

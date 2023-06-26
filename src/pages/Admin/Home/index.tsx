@@ -14,13 +14,18 @@ import { useEffect, useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { Widgets } from '../../../api/Widgets';
 import { PALETTE } from '../../../config/palette';
+import { useAtom } from 'jotai';
+import { currentWidgetAtom } from '../atom';
 
 //para chegar nessa tela utilize: http://localhost:5173/admin/[nome da tela]
 //exemplo: http://localhost:5173/admin/home
 export default function Home() {
   const navigate = useNavigate();
   const currentUser = useRecoilValue(currentUserState);
-  const [widgetSelected, setWidgetSelected] = useState<any>();
+  // const [widgetSelected, setCurrentWidget] = useState<any>();
+
+  const [currentWidget, setCurrentWidget] = useAtom(currentWidgetAtom);
+
   const [newName, setNewName] = useState<string>();
   const [createWidgetName, setCreateWidgetName] = useState<string>();
   const [widgets, setWidgets] = useState<any[]>([]);
@@ -37,8 +42,8 @@ export default function Home() {
     // console.log(response);
     if (response) {
       setWidgets(response.sort((a, b) => a.id - b.id));
-      if (widgetSelected === undefined) {
-        setWidgetSelected(response[0]);
+      if (currentWidget === undefined) {
+        setCurrentWidget(response[0]);
         setNewName(response[0].name);
       }
     }
@@ -47,7 +52,7 @@ export default function Home() {
 
   const handleUpdateWidgetName = async (name: string) => {
     if (!currentUser) return;
-    const response = await updateWidget(widgetSelected.id, { name: name, userId: currentUser.id });
+    const response = await updateWidget(currentWidget.id, { name: name, userId: currentUser.id });
     // console.log(response);
 
     const newList = await getWidgetId();
@@ -66,8 +71,8 @@ export default function Home() {
   const handleDeleteWidget = async () => {
     if (!currentUser) return;
 
-    const response = await deleteWidget(widgetSelected.id);
-    if (response) setWidgetSelected(widgets[0]);
+    const response = await deleteWidget(currentWidget.id);
+    if (response) setCurrentWidget(widgets[0]);
     getWidgetId();
   };
 
@@ -82,7 +87,7 @@ export default function Home() {
       <S.Container>
         <SideMenu />
         <S.RightContainer>
-          {widgetSelected && <Widget widgetId={widgetSelected.id} />}
+          {currentWidget && <Widget widgetId={currentWidget.id} />}
 
           <h1> Home</h1>
 
@@ -90,10 +95,10 @@ export default function Home() {
             <S.WidgetsListContainer>
               {widgets.map((widget) => (
                 <S.WidgetItem
-                  selected={widget.id === widgetSelected.id}
+                  selected={widget.id === currentWidget.id}
                   key={widget.id}
                   onClick={() => {
-                    setWidgetSelected(widget);
+                    setCurrentWidget(widget);
                     setNewName(widget.name);
                   }}>
                   <S.WidgetId>#{widget.id}</S.WidgetId>
@@ -108,7 +113,7 @@ export default function Home() {
                     Widget name:&nbsp;
                   </Typography>
                   <Typography variant="h5" fontWeight={500}>
-                    {widgetSelected?.name}
+                    {currentWidget?.name}
                   </Typography>
                 </Box>
                 <Box sx={{ display: 'flex' }}>
@@ -116,7 +121,7 @@ export default function Home() {
                     Id:&nbsp;
                   </Typography>
                   <Typography variant="h5" fontWeight={500}>
-                    #{widgetSelected?.id}
+                    #{currentWidget?.id}
                   </Typography>
                 </Box>
                 <Box sx={{ display: 'flex' }}>

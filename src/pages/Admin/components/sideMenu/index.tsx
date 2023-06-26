@@ -4,8 +4,8 @@ import * as S from './styles';
 
 import { useNavigate } from 'react-router-dom';
 import { useAtom } from 'jotai';
-import { options } from './atom';
-import { Option } from './types';
+import { options } from '../../atom';
+import { Option } from '../../types';
 
 export default function SideMenu() {
   const [optionsList, setOptionsList] = useAtom(options);
